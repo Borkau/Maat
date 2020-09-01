@@ -1,0 +1,17 @@
+The app is under active development and is NOT working yet.
+
+Test.
+Web Maven MVC application with CRUD operations.
+Data in Mysql is loaded from .xml files.
+Technologies used:
+- Java 14;
+- Maven;
+- Spring Boot;
+- Spring Web;
+- Spring Data JPA;
+- MySQL;
+- Lombok lib
+
+Тестовое задание.
+Веб-приложение, MVC, построенное на Maven, реализующее стандартные CRUD-операции.
+Данные для MySQL парсятся из XML-файлов средствами самой СУБД.
