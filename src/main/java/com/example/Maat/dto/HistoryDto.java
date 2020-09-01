@@ -1,78 +1,33 @@
-package com.example.Maat.entity;
-
+package com.example.Maat.dto;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Builder;
 
-import javax.persistence.*;
+@Data
+@Builder
 
-@Entity
-@Table
-@Data // lombok annotation
-@NoArgsConstructor
+public class HistoryDto {
 
-public class History {
-
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column
     private String boardId;
-
-    @Column
     private String tradeDate;
-
-    @Column
     private String shortHistoryName;
-
-    @Column
     private String secHisID;
-
-    @Column
     private String numTrades;
-
-    @Column
     private String valueHis;
-
-    @Column
     private String lowHis;
-
-    @Column
     private String highHis;
-
-    @Column
     private String legalClosePrice;
-
-    @Column
     private String waPrice;
-
-    @Column
     private String closeHis;
-
-    @Column
     private String volumeHis;
-
-    @Column
     private String marketPrice2;
-
-    @Column
     private String marketPrice3;
-
-    @Column
     private String admittedQuote;
-
-    @Column
     private String mp2ValTrd;
-
-    @Column
     private String marketPrice3TradesValue;
-
-    @Column
     private String admittedValue;
-
-    @Column
     private String waVal;
-
 }
+
+// Data Transfer Object
