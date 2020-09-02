@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table (name = "securities")
 @Data // lombok annotation for get|set, toString etc
 @NoArgsConstructor
 
@@ -60,4 +60,5 @@ public class Security {
 
     @Column
     private String marketPriceBoardId;
+
 }

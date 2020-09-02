@@ -1,13 +1,12 @@
 package com.example.Maat.entity;
 
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table (name = "history")
 @Data // lombok annotation
 @NoArgsConstructor
 
@@ -16,7 +15,7 @@ public class History {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer hisId;
 
     @Column
     private String boardId;
