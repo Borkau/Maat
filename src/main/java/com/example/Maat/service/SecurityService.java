@@ -7,6 +7,6 @@ import java.util.List;
 public interface SecurityService {
     SecurityDto saveSecurity(SecurityDto securityDto);
     void deleteSecurity(Integer securityId);
-    SecurityDto findByName(String secName);
+    SecurityDto findByName(String name);
     List<SecurityDto> findAll();
 }

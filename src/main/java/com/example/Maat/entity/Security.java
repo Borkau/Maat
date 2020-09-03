@@ -13,52 +13,51 @@ import javax.persistence.*;
 public class Security {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column (name = "secid")
     private String secId;
 
-    @Column
+    @Column (name = "shortname")
     private String shortName;
 
-    @Column
+    @Column (name = "regnumber")
     private String regNumber;
 
-    @Column
-    private String secName;
+    @Column (name = "name")
+    private String name;
 
-    @Column
+    @Column (name = "isin")
     private String isIn;
 
-    @Column
+    @Column (name = "is_traded")
     private String isTraded;
 
-    @Column
+    @Column (name = "emitent_id")
     private String emitentId;
 
-    @Column
+    @Column (name = "emitent_title")
     private String emitentTitle;
 
-    @Column
+    @Column (name = "emitent_inn")
     private String emitentInn;
 
-    @Column
+    @Column (name = "emitent_okpo")
     private String emitentOkpo;
 
-    @Column
+    @Column (name = "gosreg")
     private String gosReg;
 
-    @Column
+    @Column (name = "type")
     private String secType;
 
-    @Column
+    @Column (name = "group")
     private String secGroup;
 
-    @Column
+    @Column (name = "primary_boardId")
     private String primaryBoardId;
 
-    @Column
+    @Column (name = "marketprice_boardId")
     private String marketPriceBoardId;
 
 }

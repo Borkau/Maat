@@ -32,8 +32,8 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     @Override
-    public SecurityDto findByName(String secName) {
-        Security security = securityRepository.findByName(secName);
+    public SecurityDto findByName(String name) {
+        Security security = securityRepository.findByName(name);
         if(security != null) {
             return securityConverter.fromSecurityTiSecurityDto(security);
         }

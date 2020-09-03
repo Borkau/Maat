@@ -14,7 +14,7 @@ public class SecurityConverter {
                 security.setSecId(securityDto.getSecId());
                 security.setShortName(securityDto.getShortName());
                 security.setRegNumber(securityDto.getRegNumber());
-                security.setSecName(securityDto.getSecName());
+                security.setName(securityDto.getName());
                 security.setIsIn(securityDto.getIsIn());
                 security.setIsTraded(securityDto.getIsTraded());
                 security.setEmitentId(securityDto.getEmitentId());
@@ -36,7 +36,7 @@ public class SecurityConverter {
                         .secId(security.getSecId())
                         .shortName(security.getShortName())
                         .regNumber(security.getRegNumber())
-                        .secName(security.getSecName())
+                        .name(security.getName())
                         .isIn(security.getIsIn())
                         .isTraded(security.getIsTraded())
                         .emitentId(security.getEmitentId())

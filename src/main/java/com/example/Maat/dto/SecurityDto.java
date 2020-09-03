@@ -17,7 +17,7 @@ public class SecurityDto {
 
 
     @Pattern(regexp = "^[а-яА-ЯёЁ0-9\\s]+$", message = "Cyrillic, numbers and spaces only")
-    private String secName;
+    private String name;
 
     private String isIn;
     private String isTraded;

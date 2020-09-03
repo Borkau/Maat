@@ -18,6 +18,7 @@
             background-color: #dddddd;
         }
     </style>
+    <title></title>
 </head>
 <body>
 
@@ -37,28 +38,28 @@
 <button onclick="searchByName()">Search</button>
 <script>
     function searchByName() {
-        var secName = document.getElementById("search_field").value;
-        var xhttp = new XMLHttpRequest();
+        const secName = document.getElementById("search_field").value;
+        const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                var user = JSON.parse(this.responseText);
-                var html = '<tr>\n' +
-                    '        <th>Security id</th>\n' +
-                    '        <th>Security secId</th>\n' +
-                    '        <th>Security shortName</th>\n' +
-                    '        <th>Security regNumber</th>\n' +
-                    '        <th>Security secName</th>\n' +
-                    '        <th>Security isIn</th>\n' +
-                    '        <th>Security isTraded</th>\n' +
-                    '        <th>Security emitentId</th>\n' +
-                    '        <th>Security emitentTitle</th>\n' +
-                    '        <th>Security emitentInn</th>\n' +
-                    '        <th>Security emitentOkpo</th>\n' +
-                    '        <th>Security gosReg</th>\n' +
-                    '        <th>Security secType</th>\n' +
-                    '        <th>Security secGroup</th>\n' +
-                    '        <th>Security primaryBoardId</th>\n' +
-                    '        <th>Security marketPriceBoardId</th>\n' +
+            if (this.readyState === 4 && this.status === 200) {
+                const security = JSON.parse(this.responseText);
+                let html = '<tr>\n' +
+                    '        <th>Id</th>\n' +
+                    '        <th>SECID</th>\n' +
+                    '        <th>Short Name</th>\n' +
+                    '        <th>RegNumber</th>\n' +
+                    '        <th>Name</th>\n' +
+                    '        <th>IsIn</th>\n' +
+                    '        <th>Is Traded</th>\n' +
+                    '        <th>Emitent Id</th>\n' +
+                    '        <th>Emitent Title</th>\n' +
+                    '        <th>Emitent Inn</th>\n' +
+                    '        <th>Emitent Okpo</th>\n' +
+                    '        <th>GosReg</th>\n' +
+                    '        <th>Type</th>\n' +
+                    '        <th>Group</th>\n' +
+                    '        <th>Primary Board Id</th>\n' +
+                    '        <th>Market Price Board Id</th>\n' +
                     '        <th>Delete</th>\n' +
                     '    </tr>';
                 html = html + '<tr><td>' + security.id + '</td>\n' +
@@ -78,7 +79,7 @@
                     '        <td>' + security.secGroup + '</td>\n' +
                     '        <td>' + security.primaryBoardId + '</td>\n' +
                     '        <td>' + security.marketPriceBoardId + '</td>' +
-                    '        <td><button onclick="deleteUser(' + security.id + ')">Delete</button></td></tr>';
+                    '        <td><button onclick="deleteSecurity(' + security.id + ')">Delete</button></td></tr>';
                 document.getElementById("securityList").innerHTML = html;
             }
         };
@@ -107,48 +108,47 @@
     function loadSecurity() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
+            if (this.readyState === 4 && this.status === 200) {
                 var security = JSON.parse(this.responseText);
                 var html = '<tr>\n' +
-                    '        <th>Security id</th>\n' +
-                    '        <th>Security secId</th>\n' +
-                    '        <th>Security shortName</th>\n' +
-                    '        <th>Security regNumber</th>\n' +
-                    '        <th>Security secName</th>\n' +
-                    '        <th>Security isIn</th>\n' +
-                    '        <th>Security isTraded</th>\n' +
-                    '        <th>Security emitentId</th>\n' +
-                    '        <th>Security emitentTitle</th>\n' +
-                    '        <th>Security emitentInn</th>\n' +
-                    '        <th>Security emitentOkpo</th>\n' +
-                    '        <th>Security gosReg</th>\n' +
-                    '        <th>Security secType</th>\n' +
-                    '        <th>Security secGroup</th>\n' +
-                    '        <th>Security primaryBoardId</th>\n' +
-                    '        <th>Security marketPriceBoardId</th>\n' +
+                    '        <th>Id</th>\n' +
+                    '        <th>SECID</th>\n' +
+                    '        <th>Short Name</th>\n' +
+                    '        <th>RegNumber</th>\n' +
+                    '        <th>Name</th>\n' +
+                    '        <th>IsIn</th>\n' +
+                    '        <th>Is Traded</th>\n' +
+                    '        <th>Emitent Id</th>\n' +
+                    '        <th>Emitent Title</th>\n' +
+                    '        <th>Emitent Inn</th>\n' +
+                    '        <th>Emitent Okpo</th>\n' +
+                    '        <th>GosReg</th>\n' +
+                    '        <th>Type</th>\n' +
+                    '        <th>Group</th>\n' +
+                    '        <th>Primary Board Id</th>\n' +
+                    '        <th>Market Price Board Id</th>\n' +
                     '        <th>Delete</th>\n' +
                     '    </tr>';
                 for (var i = 0; i < security.length; i++) {
-                    var secur = security[i];
-                    console.log(secur);
-                    html = html + '<tr><td>' + secur.id + '</td>\n' +
-                        '        <td>' + secur.secName + '</td>\n' +
-                        '        <td>' + secur.secId + '</td>\n' +
-                        '        <td>' + secur.shortName + '</td>\n' +
-                        '        <th>' + secur.regNumber + '</td>\n' +
-                        '        <td>' + secur.secName + '</td>\n' +
-                        '        <td>' + secur.isIn + '</td>\n' +
-                        '        <td>' + secur.isTraded + '</td>\n' +
-                        '        <td>' + secur.emitentId + '</tdh>\n' +
-                        '        <td>' + secur.emitentTitle + '</td>\n' +
-                        '        <td>' + secur.emitentInn + '</td>\n' +
-                        '        <td>' + secur.emitentOkpo + '</td>\n' +
-                        '        <td>' + secur.gosReg + '</td>\n' +
-                        '        <td>' + secur.secType + '</td>\n' +
-                        '        <td>' + secur.secGroup + '</td>\n' +
-                        '        <td>' + secur.primaryBoardId + '</td>\n' +
-                        '        <td>' + secur.marketPriceBoardId + '</td>' +
-                        '        <td><button onclick="deleteSecurity(' + secur.id + ')">Delete</button></td></tr>';
+                    var paper = security[i];
+                    console.log(paper);
+                    html = html + '<tr><td>' + paper.id + '</td>\n' +
+                        '        <td>' + paper.secid + '</td>\n' +
+                        '        <td>' + paper.shortName + '</td>\n' +
+                        '        <th>' + paper.regNumber + '</td>\n' +
+                        '        <td>' + paper.name + '</td>\n' +
+                        '        <td>' + paper.isIn + '</td>\n' +
+                        '        <td>' + paper.isTraded + '</td>\n' +
+                        '        <td>' + paper.emitentId + '</tdh>\n' +
+                        '        <td>' + paper.emitentTitle + '</td>\n' +
+                        '        <td>' + paper.emitentInn + '</td>\n' +
+                        '        <td>' + paper.emitentOkpo + '</td>\n' +
+                        '        <td>' + paper.gosReg + '</td>\n' +
+                        '        <td>' + paper.secType + '</td>\n' +
+                        '        <td>' + paper.secGroup + '</td>\n' +
+                        '        <td>' + paper.primaryBoardId + '</td>\n' +
+                        '        <td>' + paper.marketPriceBoardId + '</td>' +
+                        '        <td><button onclick="deleteSecurity(' + paper.id + ')">Delete</button></td></tr>';
 
                 }
                 document.getElementById("securityList").innerHTML = html;
