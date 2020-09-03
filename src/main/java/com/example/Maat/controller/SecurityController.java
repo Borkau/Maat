@@ -19,26 +19,26 @@ public class SecurityController {
 
     @PostMapping("/save")
     public SecurityDto saveSecurity(@RequestBody SecurityDto securityDto) {
-        log.info("Handling save users: " + securityDto);
+        log.info("Handling save security: " + securityDto);
         return securityService.saveSecurity(securityDto);
     }
 
     @GetMapping("/findAll")
-    public List<SecurityDto> findAllUsers() {
-        log.info("Handling all users request");
+    public List<SecurityDto> findAllSecurity() {
+        log.info("Handling all securities request");
         return securityService.findAll();
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteSecurity(@PathVariable Integer id) {
-        log.info("Handling delete user request: " + id);
+        log.info("Handling delete security request: " + id);
         securityService.deleteSecurity(id);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/findByName")
     public SecurityDto findByName(@RequestParam String name) {
-        log.info("Handling find by name request: " + name);
+        log.info("Handling find by security request: " + name);
         return securityService.findByName(name);
     }
 }

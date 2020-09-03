@@ -21,96 +21,144 @@
 </head>
 <body>
 
-<h2>HTML Table</h2>
+<h2>MOEX awkward application tool</h2>
 
-<table id="usersList">
+<table id="securityList">
 
 </table>
 
 <form action="#">
-    <input id="user_name" placeholder="User name">
-    <input id="user_login" placeholder="User login">
-    <input id="user_email" placeholder="User email">
-    <button onclick="createUser()">Create user</button>
+    <input id="security_id" placeholder="SecId">
+    <input id="security_secName" placeholder="Name">
+    <button onclick="createSecurity()">Create security</button>
 </form>
 
-<input id="search_field">
-<button onclick="searchByLogin()">Search by Login</button>
+<input id="search_field" placeholder="Enter company name">
+<button onclick="searchByName()">Search</button>
 <script>
-    function searchByLogin() {
-        var login = document.getElementById("search_field").value;
+    function searchByName() {
+        var secName = document.getElementById("search_field").value;
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 var user = JSON.parse(this.responseText);
                 var html = '<tr>\n' +
-                    '        <th>User id</th>\n' +
-                    '        <th>User name</th>\n' +
-                    '        <th>User login</th>\n' +
-                    '        <th>User email</th>\n' +
+                    '        <th>Security id</th>\n' +
+                    '        <th>Security secId</th>\n' +
+                    '        <th>Security shortName</th>\n' +
+                    '        <th>Security regNumber</th>\n' +
+                    '        <th>Security secName</th>\n' +
+                    '        <th>Security isIn</th>\n' +
+                    '        <th>Security isTraded</th>\n' +
+                    '        <th>Security emitentId</th>\n' +
+                    '        <th>Security emitentTitle</th>\n' +
+                    '        <th>Security emitentInn</th>\n' +
+                    '        <th>Security emitentOkpo</th>\n' +
+                    '        <th>Security gosReg</th>\n' +
+                    '        <th>Security secType</th>\n' +
+                    '        <th>Security secGroup</th>\n' +
+                    '        <th>Security primaryBoardId</th>\n' +
+                    '        <th>Security marketPriceBoardId</th>\n' +
                     '        <th>Delete</th>\n' +
                     '    </tr>';
-                html = html + '<tr><td>' + user.id + '</td>\n' +
-                    '        <td>' + user.name + '</td>\n' +
-                    '        <td>' + user.login + '</td>\n' +
-                    '        <td>' + user.email + '</td>' +
-                    '        <td><button onclick="deleteUser(' + user.id + ')">Delete</button></td></tr>';
-                document.getElementById("usersList").innerHTML = html;
+                html = html + '<tr><td>' + security.id + '</td>\n' +
+                    '        <td>' + security.secName + '</td>\n' +
+                    '        <td>' + security.secId + '</td>\n' +
+                    '        <td>' + security.shortName + '</td>\n' +
+                    '        <th>' + security.regNumber+ '</td>\n' +
+                    '        <td>' + security.secName + '</td>\n' +
+                    '        <td>' + security.isIn + '</td>\n' +
+                    '        <td>' + security.isTraded + '</td>\n' +
+                    '        <td>' + security.emitentId + '</tdh>\n' +
+                    '        <td>' + security.emitentTitle + '</td>\n' +
+                    '        <td>' + security.emitentInn + '</td>\n' +
+                    '        <td>' + security.emitentOkpo + '</td>\n' +
+                    '        <td>' + security.gosReg + '</td>\n' +
+                    '        <td>' + security.secType + '</td>\n' +
+                    '        <td>' + security.secGroup + '</td>\n' +
+                    '        <td>' + security.primaryBoardId + '</td>\n' +
+                    '        <td>' + security.marketPriceBoardId + '</td>' +
+                    '        <td><button onclick="deleteUser(' + security.id + ')">Delete</button></td></tr>';
+                document.getElementById("securityList").innerHTML = html;
             }
         };
-        xhttp.open("GET", "http://localhost:8080/users/findByLogin?login=" + login, true);
+        xhttp.open("GET", "http://localhost:8080/users/findByName?login=" + secName, true);
         xhttp.send();
     }
 
-    function deleteUser(userId) {
+    function deleteSecurity(securityId) {
         var xhttp = new XMLHttpRequest();
-        xhttp.open("DELETE", "http://localhost:8080/users/delete/" + userId, true);
+        xhttp.open("DELETE", "http://localhost:8080/security/delete/" + securityId, true);
         xhttp.send();
     }
 
-    function createUser() {
-        var userName = document.getElementById("user_name").value;
-        var userLogin = document.getElementById("user_login").value;
-        var userEmail = document.getElementById("user_email").value;
+    function createSecurity() {
+        var secId = document.getElementById("security_secId").value;
+        var secName = document.getElementById("security_secName").value;
 
         var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
         xmlhttp.open("POST", "http://localhost:8080/users/save");
         xmlhttp.setRequestHeader("Content-Type", "application/json");
-        xmlhttp.send(JSON.stringify({name: userName, login: userLogin, email: userEmail}));
+        xmlhttp.send(JSON.stringify({name: secId, login: secName}));
 
-        loadUsers();
+        loadSecurity();
     }
 
-    function loadUsers() {
+    function loadSecurity() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                var users = JSON.parse(this.responseText);
+                var security = JSON.parse(this.responseText);
                 var html = '<tr>\n' +
-                    '        <th>User id</th>\n' +
-                    '        <th>User name</th>\n' +
-                    '        <th>User login</th>\n' +
-                    '        <th>User email</th>\n' +
+                    '        <th>Security id</th>\n' +
+                    '        <th>Security secId</th>\n' +
+                    '        <th>Security shortName</th>\n' +
+                    '        <th>Security regNumber</th>\n' +
+                    '        <th>Security secName</th>\n' +
+                    '        <th>Security isIn</th>\n' +
+                    '        <th>Security isTraded</th>\n' +
+                    '        <th>Security emitentId</th>\n' +
+                    '        <th>Security emitentTitle</th>\n' +
+                    '        <th>Security emitentInn</th>\n' +
+                    '        <th>Security emitentOkpo</th>\n' +
+                    '        <th>Security gosReg</th>\n' +
+                    '        <th>Security secType</th>\n' +
+                    '        <th>Security secGroup</th>\n' +
+                    '        <th>Security primaryBoardId</th>\n' +
+                    '        <th>Security marketPriceBoardId</th>\n' +
                     '        <th>Delete</th>\n' +
                     '    </tr>';
-                for (var i = 0; i < users.length; i++) {
-                    var user = users[i];
-                    console.log(user);
-                    html = html + '<tr><td>' + user.id + '</td>\n' +
-                        '        <td>' + user.name + '</td>\n' +
-                        '        <td>' + user.login + '</td>\n' +
-                        '        <td>' + user.email + '</td>' +
-                        '        <td><button onclick="deleteUser(' + user.id + ')">Delete</button></td></tr>';
+                for (var i = 0; i < security.length; i++) {
+                    var secur = security[i];
+                    console.log(secur);
+                    html = html + '<tr><td>' + secur.id + '</td>\n' +
+                        '        <td>' + secur.secName + '</td>\n' +
+                        '        <td>' + secur.secId + '</td>\n' +
+                        '        <td>' + secur.shortName + '</td>\n' +
+                        '        <th>' + secur.regNumber + '</td>\n' +
+                        '        <td>' + secur.secName + '</td>\n' +
+                        '        <td>' + secur.isIn + '</td>\n' +
+                        '        <td>' + secur.isTraded + '</td>\n' +
+                        '        <td>' + secur.emitentId + '</tdh>\n' +
+                        '        <td>' + secur.emitentTitle + '</td>\n' +
+                        '        <td>' + secur.emitentInn + '</td>\n' +
+                        '        <td>' + secur.emitentOkpo + '</td>\n' +
+                        '        <td>' + secur.gosReg + '</td>\n' +
+                        '        <td>' + secur.secType + '</td>\n' +
+                        '        <td>' + secur.secGroup + '</td>\n' +
+                        '        <td>' + secur.primaryBoardId + '</td>\n' +
+                        '        <td>' + secur.marketPriceBoardId + '</td>' +
+                        '        <td><button onclick="deleteSecurity(' + secur.id + ')">Delete</button></td></tr>';
 
                 }
-                document.getElementById("usersList").innerHTML = html;
+                document.getElementById("securityList").innerHTML = html;
             }
         };
-        xhttp.open("GET", "http://localhost:8080/users/findAll", true);
+        xhttp.open("GET", "http://localhost:8080/security/findAll", true);
         xhttp.send();
     }
 
-    loadUsers();
+    loadSecurity();
 </script>
 </body>
 </html>
