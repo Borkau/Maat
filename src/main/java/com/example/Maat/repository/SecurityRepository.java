@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 //interface for accessing CRUD methods
 
 public interface SecurityRepository extends JpaRepository<Security, Integer> {
-    Security findByName(String name);
+    Security findByName(String secName);
 }

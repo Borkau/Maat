@@ -20,11 +20,11 @@ public class SecurityDto {
     private String name;
 
     private String isIn;
-    private String isTraded;
-    private String emitentId;
+    private Integer isTraded;
+    private Integer emitentId;
     private String emitentTitle;
-    private String emitentInn;
-    private String emitentOkpo;
+    private Long emitentInn;
+    private Integer emitentOkpo;
     private String gosReg;
     private String secType;
     private String secGroup;

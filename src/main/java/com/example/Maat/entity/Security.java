@@ -4,46 +4,51 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table (name = "securities")
+@Table (name = "security")
 @Data // lombok annotation for get|set, toString etc
 @NoArgsConstructor
 
 public class Security {
 
     @Id
+    @NotNull
     private Integer id;
 
     @Column (name = "secid")
+    @NotNull
     private String secId;
 
     @Column (name = "shortname")
+    @NotNull
     private String shortName;
 
     @Column (name = "regnumber")
     private String regNumber;
 
     @Column (name = "secname")
+    @NotNull
     private String name;
 
     @Column (name = "isin")
     private String isIn;
 
     @Column (name = "is_traded")
-    private String isTraded;
+    private Integer isTraded;
 
     @Column (name = "emitent_id")
-    private String emitentId;
+    private Integer emitentId;
 
     @Column (name = "emitent_title")
     private String emitentTitle;
 
     @Column (name = "emitent_inn")
-    private String emitentInn;
+    private Long emitentInn;
 
     @Column (name = "emitent_okpo")
-    private String emitentOkpo;
+    private Integer emitentOkpo;
 
     @Column (name = "gosreg")
     private String gosReg;
@@ -54,10 +59,10 @@ public class Security {
     @Column (name = "secgroup")
     private String secGroup;
 
-    @Column (name = "primary_boardId")
+    @Column (name = "primary_boardid")
     private String primaryBoardId;
 
-    @Column (name = "marketprice_boardId")
+    @Column (name = "marketprice_boardid")
     private String marketPriceBoardId;
 
 }
