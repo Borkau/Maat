@@ -24,7 +24,7 @@ public class Security {
     @Column (name = "regnumber")
     private String regNumber;
 
-    @Column (name = "name")
+    @Column (name = "secname")
     private String name;
 
     @Column (name = "isin")
@@ -48,10 +48,10 @@ public class Security {
     @Column (name = "gosreg")
     private String gosReg;
 
-    @Column (name = "type")
+    @Column (name = "sectype")
     private String secType;
 
-    @Column (name = "group")
+    @Column (name = "secgroup")
     private String secGroup;
 
     @Column (name = "primary_boardId")
