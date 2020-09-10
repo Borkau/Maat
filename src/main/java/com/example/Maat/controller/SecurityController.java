@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @Log
 public class SecurityController {
+
     private final SecurityService securityService;
 
     @PostMapping("/save")
@@ -24,7 +25,7 @@ public class SecurityController {
     }
 
     @GetMapping("/findAll")
-    public List<SecurityDto> findAllSecurity() {
+    public List<SecurityDto> findAll() {
         log.info("Handling all securities request");
         return securityService.findAll();
     }

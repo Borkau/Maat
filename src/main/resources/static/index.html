@@ -32,17 +32,21 @@
     <input id="security_id" placeholder="SecId">
     <input id="security_secName" placeholder="Name">
     <button onclick="createSecurity()">Create security</button>
+
 </form>
 
-<input id="search_field" placeholder="Enter company name">
+<label for="search_field"></label><input id="search_field" placeholder="Enter company name">
 <button onclick="searchByName()">Search</button>
+
+<button onclick="loadSecurity()">Load all securities</button>
+
 <script>
     function searchByName() {
-        const secName = document.getElementById("search_field").value;
-        const xhttp = new XMLHttpRequest();
+        var secName = document.getElementById("search_field").value;
+        var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                const security = JSON.parse(this.responseText);
+            if (this.readyState == 4 && this.status == 200) {
+                var security = JSON.parse(this.responseText);
                 let html = '<tr>\n' +
                     '        <th>Id</th>\n' +
                     '        <th>SECID</th>\n' +
@@ -66,8 +70,8 @@
                     '        <td>' + security.secName + '</td>\n' +
                     '        <td>' + security.secId + '</td>\n' +
                     '        <td>' + security.shortName + '</td>\n' +
-                    '        <th>' + security.regNumber+ '</td>\n' +
-                    '        <td>' + security.secName + '</td>\n' +
+                    '        <th>' + security.regNumber + '</td>\n' +
+                    '        <td>' + security.name + '</td>\n' +
                     '        <td>' + security.isIn + '</td>\n' +
                     '        <td>' + security.isTraded + '</td>\n' +
                     '        <td>' + security.emitentId + '</tdh>\n' +
@@ -83,13 +87,13 @@
                 document.getElementById("securityList").innerHTML = html;
             }
         };
-        xhttp.open("GET", "http://localhost:8080/users/findByName?login=" + secName, true);
+        xhttp.open("GET", "http://localhost:8090/security/findByName?login=" + secName, true);
         xhttp.send();
     }
 
     function deleteSecurity(securityId) {
         var xhttp = new XMLHttpRequest();
-        xhttp.open("DELETE", "http://localhost:8080/security/delete/" + securityId, true);
+        xhttp.open("DELETE", "http://localhost:8090/security/delete/" + securityId, true);
         xhttp.send();
     }
 
@@ -98,66 +102,65 @@
         var secName = document.getElementById("security_secName").value;
 
         var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-        xmlhttp.open("POST", "http://localhost:8080/users/save");
+        xmlhttp.open("POST", "http://localhost:8090/security/save");
         xmlhttp.setRequestHeader("Content-Type", "application/json");
-        xmlhttp.send(JSON.stringify({name: secId, login: secName}));
+        xmlhttp.send(JSON.stringify({secId: secId, name: secName}));
 
         loadSecurity();
     }
 
     function loadSecurity() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                var security = JSON.parse(this.responseText);
+        var httpRequest = new XMLHttpRequest();
+        httpRequest.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var securities = JSON.parse(this.responseText);
                 var html = '<tr>\n' +
                     '        <th>Id</th>\n' +
-                    '        <th>SECID</th>\n' +
-                    '        <th>Short Name</th>\n' +
-                    '        <th>RegNumber</th>\n' +
-                    '        <th>Name</th>\n' +
-                    '        <th>IsIn</th>\n' +
-                    '        <th>Is Traded</th>\n' +
-                    '        <th>Emitent Id</th>\n' +
-                    '        <th>Emitent Title</th>\n' +
-                    '        <th>Emitent Inn</th>\n' +
-                    '        <th>Emitent Okpo</th>\n' +
-                    '        <th>GosReg</th>\n' +
-                    '        <th>Type</th>\n' +
-                    '        <th>Group</th>\n' +
-                    '        <th>Primary Board Id</th>\n' +
-                    '        <th>Market Price Board Id</th>\n' +
+                    '        <th>secId</th>\n' +
+                    '        <th>shortName</th>\n' +
+                    '        <th>regNumber</th>\n' +
+                    '        <th>name</th>\n' +
+                    '        <th>isIn</th>\n' +
+                    '        <th>isTraded</th>\n' +
+                    '        <th>emitentId</th>\n' +
+                    '        <th>emitentTitle</th>\n' +
+                    '        <th>emitentInn</th>\n' +
+                    '        <th>emitentOkpo</th>\n' +
+                    '        <th>gosReg</th>\n' +
+                    '        <th>secType</th>\n' +
+                    '        <th>secGroup</th>\n' +
+                    '        <th>primaryBoardId</th>\n' +
+                    '        <th>marketPriceBoardId</th>\n' +
                     '        <th>Delete</th>\n' +
                     '    </tr>';
-                for (var i = 0; i < security.length; i++) {
-                    var paper = security[i];
-                    console.log(paper);
-                    html = html + '<tr><td>' + paper.id + '</td>\n' +
-                        '        <td>' + paper.secid + '</td>\n' +
-                        '        <td>' + paper.shortName + '</td>\n' +
-                        '        <th>' + paper.regNumber + '</td>\n' +
-                        '        <td>' + paper.name + '</td>\n' +
-                        '        <td>' + paper.isIn + '</td>\n' +
-                        '        <td>' + paper.isTraded + '</td>\n' +
-                        '        <td>' + paper.emitentId + '</tdh>\n' +
-                        '        <td>' + paper.emitentTitle + '</td>\n' +
-                        '        <td>' + paper.emitentInn + '</td>\n' +
-                        '        <td>' + paper.emitentOkpo + '</td>\n' +
-                        '        <td>' + paper.gosReg + '</td>\n' +
-                        '        <td>' + paper.secType + '</td>\n' +
-                        '        <td>' + paper.secGroup + '</td>\n' +
-                        '        <td>' + paper.primaryBoardId + '</td>\n' +
-                        '        <td>' + paper.marketPriceBoardId + '</td>' +
-                        '        <td><button onclick="deleteSecurity(' + paper.id + ')">Delete</button></td></tr>';
+                for (var i = 0; i < securities.length; i++) {
+                    var security = securities[i];
+                    console.log(security);
+                    html = html + '<tr><td>' + security.id + '</td>\n' +
+                        '        <td>' + security.secId + '</td>\n' +
+                        '        <td>' + security.shortName + '</td>\n' +
+                        '        <td>' + security.regNumber + '</td>\n' +
+                        '        <td>' + security.name + '</td>\n' +
+                        '        <td>' + security.isIn + '</td>\n' +
+                        '        <td>' + security.isTraded + '</td>\n' +
+                        '        <td>' + security.emitentId + '</tdh>\n' +
+                        '        <td>' + security.emitentTitle + '</td>\n' +
+                        '        <td>' + security.emitentInn + '</td>\n' +
+                        '        <td>' + security.emitentOkpo + '</td>\n' +
+                        '        <td>' + security.gosReg + '</td>\n' +
+                        '        <td>' + security.secType + '</td>\n' +
+                        '        <td>' + security.secGroup + '</td>\n' +
+                        '        <td>' + security.primaryBoardId + '</td>\n' +
+                        '        <td>' + security.marketPriceBoardId + '</td>' +
+                        '        <td><button onclick="deleteSecurity(' + security.id + ')">Delete</button></td></tr>';
 
                 }
                 document.getElementById("securityList").innerHTML = html;
             }
         };
-        xhttp.open("GET", "http://localhost:8080/security/findAll", true);
-        xhttp.send();
+        httpRequest.open("GET", "http://localhost:8090/security/findAll", true);
+        httpRequest.send();
     }
-
     loadSecurity();
 </script>
 </body>

@@ -7,7 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table (name = "security")
+@Table (name = "securities")
 @Data // lombok annotation for get|set, toString etc
 @NoArgsConstructor
 

@@ -30,7 +30,7 @@ public class SecurityConverter {
                 return security;
         }
 
-        public SecurityDto fromSecurityTiSecurityDto(Security security) {
+        public SecurityDto fromSecurityToSecurityDto(Security security) {
                 return SecurityDto.builder()
                         .id(security.getId())
                         .secId(security.getSecId())
