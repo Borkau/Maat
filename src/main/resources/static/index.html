@@ -30,7 +30,9 @@
 </table>
 
 <form action="#">
-    <input id="security_id" placeholder="SecId">
+    <input id="security_id" placeholder="Id">
+    <input id="security_secId" placeholder="SecId">
+    <input id="security_shortName" placeholder="ShortName">
     <input id="security_secName" placeholder="Name">
     <button onclick="createSecurity()">Create security</button>
 
@@ -69,7 +71,6 @@
                     '        <th>Delete</th>\n' +
                     '    </tr>';
                 html = html + '<tr><td>' + securities.id + '</td>\n' +
-                    '        <td>' + securities.secName + '</td>\n' +
                     '        <td>' + securities.secId + '</td>\n' +
                     '        <td>' + securities.shortName + '</td>\n' +
                     '        <th>' + securities.regNumber + '</td>\n' +
@@ -100,15 +101,15 @@
     }
 
     function createSecurity() {
+        var id = document.getElementById("security_id").value;
         var secId = document.getElementById("security_secId").value;
+        var shortName = document.getElementById("security_shortName").value;
         var secName = document.getElementById("security_secName").value;
 
         var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
         xmlhttp.open("POST", "http://localhost:8090/security/save");
-        xmlhttp.setRequestHeader("Content-Type", "application/json");
-        xmlhttp.send(JSON.stringify({secId: secId, name: secName}));
-
-        loadSecurity();
+        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=utf-8");
+        xmlhttp.send(JSON.stringify({id: id, secId: secId, shortName: shortName, name: secName}));
     }
 
     function loadSecurity() {
