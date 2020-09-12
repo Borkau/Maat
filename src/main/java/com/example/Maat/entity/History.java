@@ -1,77 +1,87 @@
 package com.example.Maat.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Builder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table (name = "history")
+@Table (name = "histories")
+@Builder
 @Data // lombok annotation
 @NoArgsConstructor
+@AllArgsConstructor
+
 
 public class History {
 
-
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "id")
     private Integer hisId;
 
-    @Column
+    @NotNull
+    @Column (name = "boardid")
     private String boardId;
 
-    @Column
+    @NotNull
+    @Column (name = "tradedate")
     private String tradeDate;
 
-    @Column
+    @NotNull
+    @Column (name = "shortname")
     private String shortHistoryName;
 
-    @Column
-    private String secHisID;
+    @NotNull
+    @Column (name = "secid")
+    private String secHisId;
 
-    @Column
+    @NotNull
+    @Column (name = "numtrades")
     private String numTrades;
 
-    @Column
-    private String valueHis;
+    @Column (name = "hisvalue")
+    private Double valueHis;
 
-    @Column
-    private String lowHis;
+    @Column (name = "hisopen")
+    private Double hisOpen;
 
-    @Column
-    private String highHis;
+    @Column (name = "low")
+    private Double lowHis;
 
-    @Column
-    private String legalClosePrice;
+    @Column (name = "high")
+    private Double highHis;
 
-    @Column
-    private String waPrice;
+    @Column (name = "legalcloseprice")
+    private Double legalClosePrice;
 
-    @Column
-    private String closeHis;
+    @Column (name = "waprice")
+    private Double waPrice;
 
-    @Column
-    private String volumeHis;
+    @Column (name = "hisclose")
+    private Double closeHis;
 
-    @Column
-    private String marketPrice2;
+    @Column (name = "volume")
+    private Double volumeHis;
 
-    @Column
-    private String marketPrice3;
+    @Column (name = "marketprice2")
+    private Double marketPrice2;
 
-    @Column
-    private String admittedQuote;
+    @Column (name = "marketprice3")
+    private Double marketPrice3;
 
-    @Column
-    private String mp2ValTrd;
+    @Column (name = "admittedquote")
+    private Double admittedQuote;
 
-    @Column
-    private String marketPrice3TradesValue;
+    @Column (name = "marketprice3tradesvalue")
+    private Double marketPrice3TradesValue;
 
-    @Column
-    private String admittedValue;
+    @Column (name = "admittedvalue")
+    private Double admittedValue;
 
-    @Column
-    private String waVal;
 
 }

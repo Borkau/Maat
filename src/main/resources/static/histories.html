@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
     <style>
         table {
             font-family: arial, sans-serif;
@@ -39,16 +38,15 @@
 <label for="search_field"></label><input id="search_field" placeholder="Enter company name">
 <button onclick="searchByName()">Search</button>
 
-
 <button onclick="loadSecurity()">Load all securities</button>
 
 <script>
     function searchByName() {
-        var name = document.getElementById("search_field").value;
-        var httpRequest = new XMLHttpRequest();
-        httpRequest.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                var securities = JSON.parse(this.responseText);
+        var secName = document.getElementById("search_field").value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var security = JSON.parse(this.responseText);
                 let html = '<tr>\n' +
                     '        <th>Id</th>\n' +
                     '        <th>SECID</th>\n' +
@@ -68,35 +66,35 @@
                     '        <th>Market Price Board Id</th>\n' +
                     '        <th>Delete</th>\n' +
                     '    </tr>';
-                html = html + '<tr><td>' + securities.id + '</td>\n' +
-                    '        <td>' + securities.secName + '</td>\n' +
-                    '        <td>' + securities.secId + '</td>\n' +
-                    '        <td>' + securities.shortName + '</td>\n' +
-                    '        <th>' + securities.regNumber + '</td>\n' +
-                    '        <td>' + securities.secName + '</td>\n' +
-                    '        <td>' + securities.isIn + '</td>\n' +
-                    '        <td>' + securities.isTraded + '</td>\n' +
-                    '        <td>' + securities.emitentId + '</tdh>\n' +
-                    '        <td>' + securities.emitentTitle + '</td>\n' +
-                    '        <td>' + securities.emitentInn + '</td>\n' +
-                    '        <td>' + securities.emitentOkpo + '</td>\n' +
-                    '        <td>' + securities.gosReg + '</td>\n' +
-                    '        <td>' + securities.secType + '</td>\n' +
-                    '        <td>' + securities.secGroup + '</td>\n' +
-                    '        <td>' + securities.primaryBoardId + '</td>\n' +
-                    '        <td>' + securities.marketPriceBoardId + '</td>' +
-                    '        <td><button onclick="deleteSecurity(' + securities.id + ')">Delete</button></td></tr>';
+                html = html + '<tr><td>' + security.id + '</td>\n' +
+                    '        <td>' + security.secName + '</td>\n' +
+                    '        <td>' + security.secId + '</td>\n' +
+                    '        <td>' + security.shortName + '</td>\n' +
+                    '        <th>' + security.regNumber + '</td>\n' +
+                    '        <td>' + security.name + '</td>\n' +
+                    '        <td>' + security.isIn + '</td>\n' +
+                    '        <td>' + security.isTraded + '</td>\n' +
+                    '        <td>' + security.emitentId + '</tdh>\n' +
+                    '        <td>' + security.emitentTitle + '</td>\n' +
+                    '        <td>' + security.emitentInn + '</td>\n' +
+                    '        <td>' + security.emitentOkpo + '</td>\n' +
+                    '        <td>' + security.gosReg + '</td>\n' +
+                    '        <td>' + security.secType + '</td>\n' +
+                    '        <td>' + security.secGroup + '</td>\n' +
+                    '        <td>' + security.primaryBoardId + '</td>\n' +
+                    '        <td>' + security.marketPriceBoardId + '</td>' +
+                    '        <td><button onclick="deleteSecurity(' + security.id + ')">Delete</button></td></tr>';
                 document.getElementById("securityList").innerHTML = html;
             }
         };
-        httpRequest.open("GET", "http://localhost:8090/security/findByName?name=" + name, true);
-        httpRequest.send();
+        xhttp.open("GET", "http://localhost:8090/security/findByName?login=" + secName, true);
+        xhttp.send();
     }
 
     function deleteSecurity(securityId) {
-        var httpRequest = new XMLHttpRequest();
-        httpRequest.open("DELETE", "http://localhost:8090/security/delete/" + securityId, true);
-        httpRequest.send();
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("DELETE", "http://localhost:8090/security/delete/" + securityId, true);
+        xhttp.send();
     }
 
     function createSecurity() {
@@ -114,7 +112,7 @@
     function loadSecurity() {
         var httpRequest = new XMLHttpRequest();
         httpRequest.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
+            if (this.readyState == 4 && this.status == 200) {
                 var securities = JSON.parse(this.responseText);
                 var html = '<tr>\n' +
                     '        <th>Id</th>\n' +

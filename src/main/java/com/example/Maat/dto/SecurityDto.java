@@ -1,8 +1,9 @@
 package com.example.Maat.dto;
 
 
-import lombok.Data;
 import lombok.Builder;
+import lombok.Data;
+
 import javax.validation.constraints.Pattern;
 
 @Data
@@ -16,7 +17,6 @@ public class SecurityDto {
     private String regNumber;
 
 
-    @Pattern(regexp = "^[а-яА-ЯёЁ0-9\\s]+$", message = "Cyrillic, numbers and spaces only")
     private String name;
 
     private String isIn;
@@ -32,4 +32,4 @@ public class SecurityDto {
     private String marketPriceBoardId;
 
 }
-//Data Transfer Object
+//Data Transfer Object     @Pattern(regexp = "^[а-яА-ЯёЁ0-9\\s]+$", message = "Cyrillic, numbers and spaces only")

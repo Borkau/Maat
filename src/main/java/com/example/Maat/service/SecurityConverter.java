@@ -2,7 +2,6 @@ package com.example.Maat.service;
 
 import com.example.Maat.dto.SecurityDto;
 import com.example.Maat.entity.Security;
-
 import org.springframework.stereotype.Component;
 
 @Component

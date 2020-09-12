@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping ("/security")
+@RequestMapping(value = "/security",method = RequestMethod.POST,produces = "application/json; charset=utf-8")
 @AllArgsConstructor
 @Log
 public class SecurityController {

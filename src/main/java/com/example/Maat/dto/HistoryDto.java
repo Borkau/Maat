@@ -1,33 +1,32 @@
 package com.example.Maat.dto;
 
-import lombok.Data;
 import lombok.Builder;
+import lombok.Data;
 
 @Data
 @Builder
 
 public class HistoryDto {
 
-    private Integer id;
+    private Integer hisId;
     private String boardId;
     private String tradeDate;
     private String shortHistoryName;
-    private String secHisID;
+    private String secHisId;
     private String numTrades;
-    private String valueHis;
-    private String lowHis;
-    private String highHis;
-    private String legalClosePrice;
-    private String waPrice;
-    private String closeHis;
-    private String volumeHis;
-    private String marketPrice2;
-    private String marketPrice3;
-    private String admittedQuote;
-    private String mp2ValTrd;
-    private String marketPrice3TradesValue;
-    private String admittedValue;
-    private String waVal;
+    private Double valueHis;
+    private Double hisOpen;
+    private Double lowHis;
+    private Double highHis;
+    private Double legalClosePrice;
+    private Double waPrice;
+    private Double closeHis;
+    private Double volumeHis;
+    private Double marketPrice2;
+    private Double marketPrice3;
+    private Double admittedQuote;
+    private Double marketPrice3TradesValue;
+    private Double admittedValue;
 }
 
 // Data Transfer Object
