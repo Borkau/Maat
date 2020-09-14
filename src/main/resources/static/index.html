@@ -68,6 +68,7 @@
                     '        <th>Group</th>\n' +
                     '        <th>Primary Board Id</th>\n' +
                     '        <th>Market Price Board Id</th>\n' +
+                    '        <th>Show history</th>\n' +
                     '        <th>Delete</th>\n' +
                     '    </tr>';
                 html = html + '<tr><td>' + securities.id + '</td>\n' +
@@ -85,7 +86,8 @@
                     '        <td>' + securities.secType + '</td>\n' +
                     '        <td>' + securities.secGroup + '</td>\n' +
                     '        <td>' + securities.primaryBoardId + '</td>\n' +
-                    '        <td>' + securities.marketPriceBoardId + '</td>' +
+                    '        <td>' + securities.marketPriceBoardId + '</td>\n' +
+                    '        <td><button onclick="deleteSecurity(' + securities.id + ')">Show history</button></td>' +
                     '        <td><button onclick="deleteSecurity(' + securities.id + ')">Delete</button></td></tr>';
                 document.getElementById("securityList").innerHTML = html;
             }
