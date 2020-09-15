@@ -3,57 +3,44 @@ package com.example.Maat.controller;
 
 import com.example.Maat.dto.SecurityDto;
 import com.example.Maat.service.SecurityService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@RestController
 @RequestMapping(value = "/security",method = RequestMethod.POST,produces = "application/json; charset=utf-8")
+@AllArgsConstructor
+@Log
 @CrossOrigin
-@Controller
 public class SecurityController {
 
-    @Autowired
-    private SecurityService securityService;
+    private final SecurityService securityService;
 
-    // display list of employees
-    @GetMapping("/")
-    public String viewHomePage(Model model) {
-        model.addAttribute("listEmployees", securityService.findAll());
-        return "index";
+    @PostMapping("/save")
+    public SecurityDto saveSecurity(@RequestBody SecurityDto securityDto) {
+        log.info("Handling save security: " + securityDto);
+        return securityService.saveSecurity(securityDto);
     }
 
-    @GetMapping("/showNewSecurityForm")
-    public String showNewSecurityForm(Model model) {
-        // create model attribute to bind form data
-        SecurityDto securityDto = new SecurityDto();
-        model.addAttribute("employee", securityDto);
-        return "new_employee";
+    @GetMapping("/findAll")
+    public List<SecurityDto> findAll() {
+        log.info("Handling all securities request");
+        return securityService.findAll();
     }
 
-    @PostMapping("/saveSecurity")
-    public String saveEmployee(@ModelAttribute("security") SecurityDto securityDto) {
-        // save security to database
-        securityService.saveSecurity(securityDto);
-        return "redirect:/";
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteSecurity(@PathVariable Integer id) {
+        log.info("Handling delete security request: " + id);
+        securityService.deleteSecurity(id);
+        return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/showFormForUpdate/{id}")
-    public String showFormForUpdate(@PathVariable(value = "id") String name, Model model) {
-
-        // get security from the service
-        SecurityDto securityDto = securityService.findByName(name);
-
-        // set security as a model attribute to pre-populate the form
-        model.addAttribute("security", securityDto);
-        return "update_security";
-    }
-
-    @GetMapping("/deleteSecurity/{id}")
-    public String deleteEmployee(@PathVariable(value = "id") int id) {
-
-        // call delete employee method
-        this.securityService.deleteSecurity(id);
-        return "redirect:/";
+    @GetMapping("/findByName")
+    public SecurityDto findByName(@RequestParam String name) {
+        log.info("Handling find by security request: " + name);
+        return securityService.findByName(name);
     }
 }
