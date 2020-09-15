@@ -15,3 +15,75 @@ Technologies used:
 Тестовое задание.
 Веб-приложение, MVC, построенное на Maven, реализующее стандартные CRUD-операции.
 Данные для MySQL парсятся из XML-файлов средствами самой СУБД.
+
+//////////////////////////////////////////////////////
+
+Edit Hystory XML. Rename fields VALUE, OPEN, CLOSE to HISVALUE, HISOPEN, HISCLOSE
+Edit Secutities XML. Rename fields type, group to sectype and secgroup.
+Because this words reserves for Mysql.
+
+
+//////////////////////////////////////////////////////
+* create MySQL tables
+
+CREATE TABLE `moex_db`.`securities` (
+  `id` INT NOT NULL,
+  `secid` VARCHAR(45) NOT NULL,
+  `shortname` VARCHAR(45) NOT NULL,
+  `regnumber` VARCHAR(45) NULL,
+  `secname` VARCHAR(100) NOT NULL,
+  `isin` VARCHAR(45) NULL,
+  `is_traded` INT NULL,
+  `emitent_id` INT NULL,
+  `emitent_title` VARCHAR(100) NULL,
+  `emitent_inn` BIGINT(10) NULL,
+  `emitent_okpo` INT NULL,
+  `gosreg` VARCHAR(45) NULL,
+  `sectype` VARCHAR(45) NULL,
+  `secgroup` VARCHAR(45) NULL,
+  `primary_boardid` VARCHAR(45) NULL,
+  `marketprice_boardid` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
+
+
+CREATE TABLE `moex_db`.`histories` (
+  `id` INT NOT NULL,
+  `boardid` VARCHAR(45) NOT NULL,
+  `tradedate` VARCHAR(45) NOT NULL,
+  `shortname` VARCHAR(45) NULL,
+  `secid` VARCHAR(100) NOT NULL,
+  `numtrades` VARCHAR(45) NULL,
+  `hisvalue` INT NULL,
+  `hisopen` INT NULL,
+  `low` VARCHAR(100) NULL,
+  `high` BIGINT(10) NULL,
+  `legalcloseprice` INT NULL,
+  `waprice` VARCHAR(45) NULL,
+  `hisclose` VARCHAR(45) NULL,
+  `marketprice2` VARCHAR(45) NULL,
+  `marketprice3` VARCHAR(45) NULL,
+  `admittedquote` VARCHAR(45) NULL,
+  `marketprice3tradesvalue` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
+
+//////////////////////////////////////////////////////
+*set time zone
+
+SELECT * FROM moex_db.securities;
+SET GLOBAL time_zone = '+5:00';
+
+//////////////////////////////////////////////////////
+* import from xml
+* each file must be loaded manually. Therefore, it is necessary to change the file names. Temporary inconvenience.
+
+SELECT * FROM moex_db.securities;
+LOAD XML LOCAL INFILE "D:\\moex_xml\\securities_1.xml"
+INTO TABLE securities
+ROWS IDENTIFIED BY '<row>';
+
+SELECT * FROM moex_db.histories;
+LOAD XML LOCAL INFILE "D:\\moex_xml\\history_1.xml"
+INTO TABLE histories
+ROWS IDENTIFIED BY '<row>';
