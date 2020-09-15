@@ -22,23 +22,14 @@
 </head>
 <body>
 
-<h2>MOEX awkward application tool</h2>
+<h2>History</h2>
 
-<table id="securityList">
+<table id="historyList">
 
 </table>
 
-<form action="#">
-    <input id="security_id" placeholder="SecId">
-    <input id="security_secName" placeholder="Name">
-    <button onclick="createSecurity()">Create security</button>
-
-</form>
-
 <label for="search_field"></label><input id="search_field" placeholder="Enter company name">
 <button onclick="searchByName()">Search</button>
-
-<button onclick="loadSecurity()">Load all securities</button>
 
 <script>
     function searchByName() {
@@ -84,7 +75,7 @@
                     '        <td>' + security.primaryBoardId + '</td>\n' +
                     '        <td>' + security.marketPriceBoardId + '</td>' +
                     '        <td><button onclick="deleteSecurity(' + security.id + ')">Delete</button></td></tr>';
-                document.getElementById("securityList").innerHTML = html;
+                document.getElementById("historyList").innerHTML = html;
             }
         };
         xhttp.open("GET", "http://localhost:8090/security/findByName?login=" + secName, true);
@@ -139,6 +130,8 @@
         httpRequest.open("GET", "http://localhost:8090/security/findAll", true);
         httpRequest.send();
     }
+    loadSecurity();
+
 </script>
 </body>
 </html>

@@ -7,6 +7,6 @@ import java.util.List;
 public interface HistoryService {
     HistoryDto saveHistory(HistoryDto historyDto);
     void deleteHistory(Integer hisId);
-    HistoryDto findById(Integer secHisId);
+    HistoryDto findBySecHisId(Integer secHisId);
     List<HistoryDto> findAllHis();
 }

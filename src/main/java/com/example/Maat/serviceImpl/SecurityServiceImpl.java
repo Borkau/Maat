@@ -36,13 +36,12 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Transactional
     @Override
-    public SecurityDto findByName(String name) {
-        Security security = securityRepository.findByName(name);
-        if(security != null) {
-            return securityConverter.fromSecurityToSecurityDto(security);
+    public List<SecurityDto> findByName(String name) {
+        return securityRepository.findByName(name)
+                .stream()
+                .map(securityConverter::fromSecurityToSecurityDto)
+                .collect(Collectors.toList());
         }
-        return null;
-    }
 
     @Transactional
     @Override

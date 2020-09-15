@@ -39,7 +39,7 @@ public class SecurityController {
     }
 
     @GetMapping("/findByName")
-    public SecurityDto findByName(@RequestParam String name) {
+    public List<SecurityDto> findByName(@RequestParam String name) {
         log.info("Handling find by security request: " + name);
         return securityService.findByName(name);
     }

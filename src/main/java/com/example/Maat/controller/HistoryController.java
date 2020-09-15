@@ -37,9 +37,9 @@ public class HistoryController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/findById")
-    public HistoryDto findById(@RequestParam Integer hisId) {
-        log.info("Handling find by security request: " + hisId);
-        return historyService.findById(hisId);
+    @GetMapping("/findBySecHisId")
+    public HistoryDto findBySecHisId(@RequestParam Integer secHisId) {
+        log.info("Handling find by history request: " + secHisId);
+        return historyService.findBySecHisId(secHisId);
     }
 }

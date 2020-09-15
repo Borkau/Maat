@@ -36,8 +36,8 @@ public class HistoryServiceImpl implements HistoryService {
 
     @Transactional
     @Override
-    public HistoryDto findById(Integer secHisId) {
-        History history = historyRepository.findByHisId(secHisId);
+    public HistoryDto findBySecHisId(Integer secHisId) {
+        History history = historyRepository.findBySecHisId(secHisId);
         if(history != null) {
             return historyConverter.fromHistoryToHistoryDto(history);
         }

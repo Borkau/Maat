@@ -71,24 +71,28 @@
                     '        <th>Show history</th>\n' +
                     '        <th>Delete</th>\n' +
                     '    </tr>';
-                html = html + '<tr><td>' + securities.id + '</td>\n' +
-                    '        <td>' + securities.secId + '</td>\n' +
-                    '        <td>' + securities.shortName + '</td>\n' +
-                    '        <th>' + securities.regNumber + '</td>\n' +
-                    '        <td>' + securities.secName + '</td>\n' +
-                    '        <td>' + securities.isIn + '</td>\n' +
-                    '        <td>' + securities.isTraded + '</td>\n' +
-                    '        <td>' + securities.emitentId + '</tdh>\n' +
-                    '        <td>' + securities.emitentTitle + '</td>\n' +
-                    '        <td>' + securities.emitentInn + '</td>\n' +
-                    '        <td>' + securities.emitentOkpo + '</td>\n' +
-                    '        <td>' + securities.gosReg + '</td>\n' +
-                    '        <td>' + securities.secType + '</td>\n' +
-                    '        <td>' + securities.secGroup + '</td>\n' +
-                    '        <td>' + securities.primaryBoardId + '</td>\n' +
-                    '        <td>' + securities.marketPriceBoardId + '</td>\n' +
-                    '        <td><button onclick="deleteSecurity(' + securities.id + ')">Show history</button></td>' +
-                    '        <td><button onclick="deleteSecurity(' + securities.id + ')">Delete</button></td></tr>';
+                for (var i = 0; i < securities.length; i++) {
+                    var security = securities[i];
+                    console.log(security);
+                    html = html + '<tr><td>' + security.id + '</td>\n' +
+                        '        <td>' + security.secId + '</td>\n' +
+                        '        <td>' + security.shortName + '</td>\n' +
+                        '        <th>' + security.regNumber + '</td>\n' +
+                        '        <td>' + security.secName + '</td>\n' +
+                        '        <td>' + security.isIn + '</td>\n' +
+                        '        <td>' + security.isTraded + '</td>\n' +
+                        '        <td>' + security.emitentId + '</tdh>\n' +
+                        '        <td>' + security.emitentTitle + '</td>\n' +
+                        '        <td>' + security.emitentInn + '</td>\n' +
+                        '        <td>' + security.emitentOkpo + '</td>\n' +
+                        '        <td>' + security.gosReg + '</td>\n' +
+                        '        <td>' + security.secType + '</td>\n' +
+                        '        <td>' + security.secGroup + '</td>\n' +
+                        '        <td>' + security.primaryBoardId + '</td>\n' +
+                        '        <td>' + security.marketPriceBoardId + '</td>\n' +
+                        '        <td><input type="button" value="Show history" onclick="window.location.href=\'histories.html\';"/></td>' +
+                        '        <td><button onclick="deleteSecurity(' + security.id + ')">Delete</button></td></tr>';
+                }
                 document.getElementById("securityList").innerHTML = html;
             }
         };
@@ -125,6 +129,7 @@
                     '        <th>regNumber</th>\n' +
                     '        <th>name</th>\n' +
                     '        <th>emitentTitle</th>\n' +
+                    '        <th>Show history</th>\n' +
                     '        <th>Delete</th>\n' +
                     '    </tr>';
                 for (var i = 0; i < securities.length; i++) {
@@ -135,6 +140,7 @@
                         '        <td>' + security.regNumber + '</td>\n' +
                         '        <td>' + security.name + '</td>\n' +
                         '        <td>' + security.emitentTitle + '</td>\n' +
+                        '        <td><input type="button" value="Show history" onclick="window.location.href=\'histories.html\';"/></td>' +
                         '        <td><button onclick="deleteSecurity(' + security.id + ')">Delete</button></td></tr>';
 
                 }
