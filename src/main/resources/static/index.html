@@ -25,9 +25,7 @@
 
 <h2>MOEX awkward application tool</h2>
 
-<table id="securityList">
-
-</table>
+<table id="securityList"></table>
 
 <form action="#">
     <input id="security_id" placeholder="Id">
@@ -90,19 +88,19 @@
                         '        <td>' + security.secGroup + '</td>\n' +
                         '        <td>' + security.primaryBoardId + '</td>\n' +
                         '        <td>' + security.marketPriceBoardId + '</td>\n' +
-                        '        <td><input type="button" value="Show history" onclick="window.location.href=\'histories.html\';"/></td>' +
+                        '        <td><button onclick="showHistory(\'' + security.secId + '\')">Show History</button></td>' +
                         '        <td><button onclick="deleteSecurity(' + security.id + ')">Delete</button></td></tr>';
                 }
                 document.getElementById("securityList").innerHTML = html;
             }
         };
-        httpRequest.open("GET", "http://localhost:8090/security/findByName?name=" + name, true);
+        httpRequest.open("GET", "http://localhost:8090/controller/security/findByName?name=" + name, true);
         httpRequest.send();
     }
 
     function deleteSecurity(securityId) {
         var httpRequest = new XMLHttpRequest();
-        httpRequest.open("DELETE", "http://localhost:8090/security/delete/" + securityId, true);
+        httpRequest.open("DELETE", "http://localhost:8090/controller/security/delete/" + securityId, true);
         httpRequest.send();
     }
 
@@ -113,7 +111,7 @@
         var secName = document.getElementById("security_secName").value;
 
         var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-        xmlhttp.open("POST", "http://localhost:8090/security/save");
+        xmlhttp.open("POST", "http://localhost:8090/controller/security/save");
         xmlhttp.setRequestHeader("Content-Type", "application/json;charset=utf-8");
         xmlhttp.send(JSON.stringify({id: id, secId: secId, shortName: shortName, name: secName}));
     }
@@ -140,14 +138,72 @@
                         '        <td>' + security.regNumber + '</td>\n' +
                         '        <td>' + security.name + '</td>\n' +
                         '        <td>' + security.emitentTitle + '</td>\n' +
-                        '        <td><input type="button" value="Show history" onclick="window.location.href=\'histories.html\';"/></td>' +
+                        '        <td><button onclick="showHistory(\'' + security.secId + '\')">Show History</button></td>' +
                         '        <td><button onclick="deleteSecurity(' + security.id + ')">Delete</button></td></tr>';
 
                 }
                 document.getElementById("securityList").innerHTML = html;
             }
         };
-        httpRequest.open("GET", "http://localhost:8090/security/findAll", true);
+        httpRequest.open("GET", "http://localhost:8090/controller/security/findAll", true);
+        httpRequest.send();
+    }
+
+    function showHistory(secHisId) {
+        var httpRequest = new XMLHttpRequest();
+        httpRequest.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                var histories = JSON.parse(this.responseText);
+                let html = '<tr>\n' +
+                    '        <th>Id</th>\n' +
+                    '        <th>boardid</th>\n' +
+                    '        <th>tradedate</th>\n' +
+                    '        <th>shortname</th>\n' +
+                    '        <th>secid</th>\n' +
+                    '        <th>numtrades</th>\n' +
+                    '        <th>value</th>\n' +
+                    '        <th>open</th>\n' +
+                    '        <th>low Title</th>\n' +
+                    '        <th>high</th>\n' +
+                    '        <th>legalcloseprice</th>\n' +
+                    '        <th>waprice</th>\n' +
+                    '        <th>close</th>\n' +
+                    '        <th>volume</th>\n' +
+                    '        <th>marketprice2</th>\n' +
+                    '        <th>marketprice3</th>\n' +
+                    '        <th>admittedquote</th>\n' +
+                    '        <th>marketprice3tradesvalue</th>\n' +
+                    '        <th>admittedvalue</th>\n' +
+                    '        <th>Delete</th>\n' +
+                    '    </tr>';
+                for (var i = 0; i < histories.length; i++) {
+                    var history = histories[i];
+                    console.log(history);
+                    html = html + '<tr><td>' + history.hisId + '</td>\n' +
+                        '        <td>' + history.boardId + '</td>\n' +
+                        '        <td>' + history.tradeDate + '</td>\n' +
+                        '        <th>' + history.shortHistoryName + '</td>\n' +
+                        '        <td>' + history.secHisId + '</td>\n' +
+                        '        <td>' + history.numTrades + '</td>\n' +
+                        '        <td>' + history.valueHis + '</td>\n' +
+                        '        <td>' + history.hisOpen + '</tdh>\n' +
+                        '        <td>' + history.lowHis + '</td>\n' +
+                        '        <td>' + history.highHis + '</td>\n' +
+                        '        <td>' + history.legalClosePrice + '</td>\n' +
+                        '        <td>' + history.waPrice + '</td>\n' +
+                        '        <td>' + history.closeHis + '</td>\n' +
+                        '        <td>' + history.volumeHis + '</td>\n' +
+                        '        <td>' + history.marketPrice2 + '</td>\n' +
+                        '        <td>' + history.marketPrice3 + '</td>\n' +
+                        '        <td>' + history.admittedQuote + '</td>\n' +
+                        '        <td>' + history.marketPrice3TradesValue + '</td>\n' +
+                        '        <td>' + history.admittedValue + '</td>\n' +
+                        '        <td><button onclick="deleteSecurity(' + history.id + ')">Delete</button></td></tr>';
+                }
+                document.getElementById("securityList").innerHTML = html;
+            }
+        };
+        httpRequest.open("GET", "http://localhost:8090/controller/history/findBySecHisId?secHisId=" + secHisId, true);
         httpRequest.send();
     }
 </script>

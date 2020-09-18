@@ -36,12 +36,11 @@ public class HistoryServiceImpl implements HistoryService {
 
     @Transactional
     @Override
-    public HistoryDto findBySecHisId(Integer secHisId) {
-        History history = historyRepository.findBySecHisId(secHisId);
-        if(history != null) {
-            return historyConverter.fromHistoryToHistoryDto(history);
-        }
-        return null;
+    public List<HistoryDto> findBySecHisId(String secHisId) {
+        return historyRepository.findBySecHisId(secHisId)
+                .stream()
+                .map(historyConverter::fromHistoryToHistoryDto)
+                .collect(Collectors.toList());
     }
 
     @Transactional

@@ -1,7 +1,9 @@
 package com.example.Maat.controller;
 
 
+import com.example.Maat.dto.HistoryDto;
 import com.example.Maat.dto.SecurityDto;
+import com.example.Maat.service.HistoryService;
 import com.example.Maat.service.SecurityService;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
@@ -11,13 +13,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/security",method = RequestMethod.POST,produces = "application/json; charset=utf-8")
+@RequestMapping(value = "/controller/security",method = RequestMethod.POST,produces = "application/json; charset=utf-8")
 @AllArgsConstructor
 @Log
 @CrossOrigin
 public class SecurityController {
 
     private final SecurityService securityService;
+    private final HistoryService historyService;
+
 
     @PostMapping("/save")
     public SecurityDto saveSecurity(@RequestBody SecurityDto securityDto) {

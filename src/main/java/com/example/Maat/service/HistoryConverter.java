@@ -8,28 +8,29 @@ import org.springframework.stereotype.Component;
 public class HistoryConverter {
 
     public History fromHistoryDtoToHistory(HistoryDto historyDto) {
-        return History.builder()
-                .hisId(historyDto.getHisId())
-                .boardId(historyDto.getBoardId())
-                .tradeDate(historyDto.getTradeDate())
-                .shortHistoryName(historyDto.getShortHistoryName())
-                .secHisId(historyDto.getSecHisId())
-                .numTrades(historyDto.getNumTrades())
-                .valueHis(historyDto.getValueHis())
-                .hisOpen(historyDto.getHisOpen())
-                .lowHis(historyDto.getLowHis())
-                .highHis(historyDto.getHighHis())
-                .legalClosePrice(historyDto.getLegalClosePrice())
-                .waPrice(historyDto.getWaPrice())
-                .closeHis(historyDto.getCloseHis())
-                .volumeHis(historyDto.getVolumeHis())
-                .marketPrice2(historyDto.getMarketPrice2())
-                .marketPrice3(historyDto.getMarketPrice3())
-                .admittedQuote(historyDto.getAdmittedQuote())
-                .marketPrice3TradesValue(historyDto.getMarketPrice3TradesValue())
-                .admittedValue(historyDto.getAdmittedValue())
-                .build();
+        History history = new History();
+        history.setHisId(historyDto.getHisId());
+        history.setBoardId(historyDto.getBoardId());
+        history.setTradeDate(historyDto.getTradeDate());
+        history.setShortHistoryName(historyDto.getShortHistoryName());
+        history.setSecHisId(historyDto.getSecHisId());
+        history.setNumTrades(historyDto.getNumTrades());
+        history.setValueHis(historyDto.getValueHis());
+        history.setHisOpen(historyDto.getHisOpen());
+        history.setLowHis(historyDto.getLowHis());
+        history.setHighHis(historyDto.getHighHis());
+        history.setLegalClosePrice(historyDto.getLegalClosePrice());
+        history.setWaPrice(historyDto.getWaPrice());
+        history.setCloseHis(historyDto.getCloseHis());
+        history.setVolumeHis(historyDto.getVolumeHis());
+        history.setMarketPrice2(historyDto.getMarketPrice2());
+        history.setMarketPrice3(historyDto.getMarketPrice3());
+        history.setAdmittedQuote(historyDto.getAdmittedQuote());
+        history.setMarketPrice3TradesValue(historyDto.getMarketPrice3TradesValue());
+        history.setAdmittedValue(historyDto.getAdmittedValue());
+        return history;
     }
+
     public HistoryDto fromHistoryToHistoryDto(History history) {
         return HistoryDto.builder()
                 .hisId(history.getHisId())

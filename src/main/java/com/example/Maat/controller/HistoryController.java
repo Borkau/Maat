@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping ("/history")
+@RequestMapping (value = "/controller/history", method = RequestMethod.POST,produces = "application/json; charset=utf-8")
 @AllArgsConstructor
 @Log
+@CrossOrigin
 public class HistoryController {
 
     private final HistoryService historyService;
@@ -38,7 +39,7 @@ public class HistoryController {
     }
 
     @GetMapping("/findBySecHisId")
-    public HistoryDto findBySecHisId(@RequestParam Integer secHisId) {
+    public List<HistoryDto> findBySecHisId(@RequestParam String secHisId) {
         log.info("Handling find by history request: " + secHisId);
         return historyService.findBySecHisId(secHisId);
     }
