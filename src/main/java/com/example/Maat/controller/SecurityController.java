@@ -20,7 +20,6 @@ import java.util.List;
 public class SecurityController {
 
     private final SecurityService securityService;
-    private final HistoryService historyService;
 
 
     @PostMapping("/save")

@@ -25,16 +25,18 @@
 
 <h2>MOEX awkward application tool</h2>
 
-<table id="securityList"></table>
-
 <form action="#">
     <input id="security_id" placeholder="Id">
     <input id="security_secId" placeholder="SecId">
     <input id="security_shortName" placeholder="ShortName">
-    <input id="security_secName" placeholder="Name">
+    <label title = "Only cyrillic, numbers and spaces">
+    <input id="security_secName" placeholder="Name" required pattern="^[а-яА-ЯёЁ0-9\s]+$">
+    </label>
     <button onclick="createSecurity()">Create security</button>
 
 </form>
+
+<table id="securityList"></table>
 
 <label for="search_field"></label><input id="search_field" placeholder="Enter company name">
 <button onclick="searchByName()">Search</button>
@@ -66,6 +68,7 @@
                     '        <th>Group</th>\n' +
                     '        <th>Primary Board Id</th>\n' +
                     '        <th>Market Price Board Id</th>\n' +
+                    '        <th>Edit security</th>\n' +
                     '        <th>Show history</th>\n' +
                     '        <th>Delete</th>\n' +
                     '    </tr>';
@@ -88,6 +91,7 @@
                         '        <td>' + security.secGroup + '</td>\n' +
                         '        <td>' + security.primaryBoardId + '</td>\n' +
                         '        <td>' + security.marketPriceBoardId + '</td>\n' +
+                        '        <td><button onclick="editSecurity(' + security.id + ')">Edit</button></td>' +
                         '        <td><button onclick="showHistory(\'' + security.secId + '\')">Show History</button></td>' +
                         '        <td><button onclick="deleteSecurity(' + security.id + ')">Delete</button></td></tr>';
                 }
@@ -102,9 +106,23 @@
         var httpRequest = new XMLHttpRequest();
         httpRequest.open("DELETE", "http://localhost:8090/controller/security/delete/" + securityId, true);
         httpRequest.send();
+
     }
 
     function createSecurity() {
+        var id = document.getElementById("security_id").value;
+        var secId = document.getElementById("security_secId").value;
+        var shortName = document.getElementById("security_shortName").value;
+        var secName = document.getElementById("security_secName").value;
+
+        var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+        xmlhttp.open("POST", "http://localhost:8090/controller/security/save");
+        xmlhttp.setRequestHeader("Content-Type", "application/json;charset=utf-8");
+        xmlhttp.send(JSON.stringify({id: id, secId: secId, shortName: shortName, name: secName}));
+    }
+
+
+    function editSecurity() {
         var id = document.getElementById("security_id").value;
         var secId = document.getElementById("security_secId").value;
         var shortName = document.getElementById("security_shortName").value;
@@ -127,6 +145,7 @@
                     '        <th>regNumber</th>\n' +
                     '        <th>name</th>\n' +
                     '        <th>emitentTitle</th>\n' +
+                    '        <th>Edit security</th>\n' +
                     '        <th>Show history</th>\n' +
                     '        <th>Delete</th>\n' +
                     '    </tr>';
@@ -138,6 +157,7 @@
                         '        <td>' + security.regNumber + '</td>\n' +
                         '        <td>' + security.name + '</td>\n' +
                         '        <td>' + security.emitentTitle + '</td>\n' +
+                        '        <td><button onclick="editSecurity(' + security.id + ')">Edit</button></td>' +
                         '        <td><button onclick="showHistory(\'' + security.secId + '\')">Show History</button></td>' +
                         '        <td><button onclick="deleteSecurity(' + security.id + ')">Delete</button></td></tr>';
 
