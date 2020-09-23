@@ -43,6 +43,9 @@
 
 
 <button onclick="loadSecurity()">Load all securities</button>
+<button onclick="parseSecurities()">Load XML</button>
+
+
 
 <script>
     function searchByName() {
@@ -226,6 +229,13 @@
         httpRequest.open("GET", "http://localhost:8090/controller/history/findBySecHisId?secHisId=" + secHisId, true);
         httpRequest.send();
     }
+
+    function parseSecurities() {
+        var httpRequest = new XMLHttpRequest();
+        httpRequest.open("POST", "http://localhost:8090/controller/security/parseSecurity", true);
+        httpRequest.send();
+    }
+
 </script>
 </body>
 </html>

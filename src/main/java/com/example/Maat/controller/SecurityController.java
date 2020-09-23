@@ -1,9 +1,8 @@
 package com.example.Maat.controller;
 
 
-import com.example.Maat.dto.HistoryDto;
 import com.example.Maat.dto.SecurityDto;
-import com.example.Maat.service.HistoryService;
+import com.example.Maat.parser.SecurityParser;
 import com.example.Maat.service.SecurityService;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
@@ -20,6 +19,7 @@ import java.util.List;
 public class SecurityController {
 
     private final SecurityService securityService;
+    private final SecurityParser securityParser;
 
 
     @PostMapping("/save")
@@ -45,5 +45,10 @@ public class SecurityController {
     public List<SecurityDto> findByName(@RequestParam String name) {
         log.info("Handling find by security request: " + name);
         return securityService.findByName(name);
+    }
+
+    @RequestMapping("/parseSecurity")
+    public void parseSecurities() {
+        securityParser.parseSecurity();
     }
 }

@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table (name = "securities")
-@Data // lombok annotation for get|set, toString etc
+@Data
 @NoArgsConstructor
 
 public class Security {
