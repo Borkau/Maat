@@ -8,7 +8,10 @@ import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -48,7 +51,7 @@ public class SecurityController {
     }
 
     @RequestMapping("/parseSecurity")
-    public void parseSecurities() {
+    public void parseSecurities() throws IOException, SAXException, ParserConfigurationException {
         securityParser.parseSecurity();
     }
 }

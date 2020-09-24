@@ -1,14 +1,13 @@
 package com.example.Maat.service;
 
 import com.example.Maat.dto.SecurityDto;
-import com.example.Maat.entity.Security;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SecurityConverter {
 
-        public Security fromSecurityDtoToSecurity(SecurityDto securityDto) {
-                Security security = new Security();
+        public com.example.Maat.entity.Security fromSecurityDtoToSecurity(SecurityDto securityDto) {
+                com.example.Maat.entity.Security security = new com.example.Maat.entity.Security();
                 security.setId(securityDto.getId());
                 security.setSecId(securityDto.getSecId());
                 security.setShortName(securityDto.getShortName());
@@ -29,7 +28,7 @@ public class SecurityConverter {
                 return security;
         }
 
-        public SecurityDto fromSecurityToSecurityDto(Security security) {
+        public SecurityDto fromSecurityToSecurityDto(com.example.Maat.entity.Security security) {
                 return SecurityDto.builder()
                         .id(security.getId())
                         .secId(security.getSecId())

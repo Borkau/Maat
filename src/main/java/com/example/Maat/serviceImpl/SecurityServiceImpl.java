@@ -2,7 +2,6 @@ package com.example.Maat.serviceImpl;
 
 
 import com.example.Maat.dto.SecurityDto;
-import com.example.Maat.entity.Security;
 import com.example.Maat.repository.SecurityRepository;
 import com.example.Maat.service.SecurityConverter;
 import com.example.Maat.service.SecurityService;
@@ -24,7 +23,7 @@ public class SecurityServiceImpl implements SecurityService {
     @Transactional
     @Override
     public SecurityDto saveSecurity(SecurityDto securityDto) {
-        Security savedSecurity = securityRepository.save(securityConverter.fromSecurityDtoToSecurity(securityDto));
+        com.example.Maat.entity.Security savedSecurity = securityRepository.save(securityConverter.fromSecurityDtoToSecurity(securityDto));
         return securityConverter.fromSecurityToSecurityDto(savedSecurity);
     }
 
