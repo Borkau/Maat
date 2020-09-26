@@ -62,5 +62,11 @@ public class SecurityServiceImpl implements SecurityService {
     public List<Security> saveAll() throws IOException, SAXException, ParserConfigurationException {
         return securityRepository.saveAll(securityParser.parseSecurity());
     }
+
+    @Transactional
+    @Override
+    public void deleteAllSec() {
+        securityRepository.deleteAll();
+    }
 }
 

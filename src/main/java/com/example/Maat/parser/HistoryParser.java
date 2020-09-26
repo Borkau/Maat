@@ -41,18 +41,17 @@ public class HistoryParser {
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-        for (int y = 1; y < 3; y++) {
+        for (int y = 1; y < 5; y++) {
             Document document = builder.parse(new File("history_" + y + ".xml"));
             document.getDocumentElement().normalize();
-            NodeList securityList = document.getElementsByTagName("row");
-            for (int i = 0; i < securityList.getLength(); i++) {
-                Node node = securityList.item(i);
+            NodeList historyList = document.getElementsByTagName("row");
+            for (int i = 0; i < historyList.getLength(); i++) {
+                Node node = historyList.item(i);
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
 
                     // create new Security Object
                     history = new History();
-                    history.setHisId(strToInt(element.getAttribute("ID")));
                     history.setBoardId(element.getAttribute("BOARDID"));
                     history.setTradeDate(element.getAttribute("TRADEDATE"));
                     history.setShortHistoryName(element.getAttribute("SHORTNAME"));

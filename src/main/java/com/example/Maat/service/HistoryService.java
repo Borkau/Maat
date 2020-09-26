@@ -11,6 +11,7 @@ import java.util.List;
 public interface HistoryService {
     HistoryDto saveHistory(HistoryDto historyDto);
     void deleteHistory(Integer hisId);
+    void deleteAllHis();
     List<HistoryDto> findBySecHisId(String secHisId);
     List<HistoryDto> findAllHis();
     List<History> saveAll() throws IOException, SAXException, ParserConfigurationException;

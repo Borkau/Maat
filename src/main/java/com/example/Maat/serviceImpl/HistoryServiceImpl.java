@@ -66,4 +66,9 @@ public class HistoryServiceImpl implements HistoryService {
         return historyRepository.saveAll(historyParser.parseHistory());
     }
 
+    @Transactional
+    @Override
+    public void deleteAllHis() {
+        historyRepository.deleteAll();
+    }
 }

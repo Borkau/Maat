@@ -49,6 +49,7 @@ public class HistoryController {
 
     @RequestMapping("/parseHistory")
     public void saveAll() throws IOException, SAXException, ParserConfigurationException {
+        historyService.deleteAllHis();
         historyService.saveAll();
     }
 
