@@ -14,7 +14,7 @@ Technologies used:
 
 Тестовое задание.
 Веб-приложение, MVC, построенное на Maven, реализующее стандартные CRUD-операции.
-Данные для MySQL парсятся из XML-файлов средствами самой СУБД.
+Данные для MySQL парсятся непосредственно в приложении.
 
 //////////////////////////////////////////////////////
 
@@ -48,42 +48,26 @@ CREATE TABLE `moex_db`.`securities` (
 
 
 CREATE TABLE `moex_db`.`histories` (
-  `id` INT NOT NULL,
-  `boardid` VARCHAR(45) NOT NULL,
-  `tradedate` VARCHAR(45) NOT NULL,
-  `shortname` VARCHAR(45) NULL,
-  `secid` VARCHAR(100) NOT NULL,
-  `numtrades` VARCHAR(45) NULL,
-  `hisvalue` INT NULL,
-  `hisopen` INT NULL,
-  `low` VARCHAR(100) NULL,
-  `high` BIGINT(10) NULL,
-  `legalcloseprice` INT NULL,
-  `waprice` VARCHAR(45) NULL,
-  `hisclose` VARCHAR(45) NULL,
-  `marketprice2` VARCHAR(45) NULL,
-  `marketprice3` VARCHAR(45) NULL,
-  `admittedquote` VARCHAR(45) NULL,
-  `marketprice3tradesvalue` VARCHAR(45) NULL,
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `BOARDID` VARCHAR(45) NOT NULL,
+  `TRADEDATE` VARCHAR(45) NOT NULL,
+  `SHORTNAME` VARCHAR(45) NULL,
+  `SECID` VARCHAR(100) NOT NULL,
+  `NUMTRADES` DOUBLE(45) NULL,
+  `HISVALUE` DOUBLE NULL,
+  `HISOPEN` INT NULL,
+  `LOW` DOUBLE(100) NULL,
+  `HIGH` DOUBLE(10) NULL,
+  `LEGALCLOSEPRICE` DOUBLE NULL,
+  `WAPRICE` DOUBLE(45) NULL,
+  `HISCLOSE` DOUBLE(45) NULL,
+  `VOLUME` DOUBLE(45) NULL,
+  `MARKETPRICE2` DOUBLE(45) NULL,
+  `MARKETPRICE3` DOUBLE(45) NULL,
+  `ADMITTEDQUOTE` DOUBLE(45) NULL,
+  `MARKETPRICE3TRADESVALUE` DOUBLE(45) NULL,
+  `ADMITTEDVALUE` DOUBLE(45) NULL,  
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
 
 //////////////////////////////////////////////////////
-*set time zone
-
-SELECT * FROM moex_db.securities;
-SET GLOBAL time_zone = '+5:00';
-
-//////////////////////////////////////////////////////
-* import from xml
-* each file must be loaded manually. Therefore, it is necessary to change the file names. Temporary inconvenience.
-
-SELECT * FROM moex_db.securities;
-LOAD XML LOCAL INFILE "D:\\moex_xml\\securities_1.xml"
-INTO TABLE securities
-ROWS IDENTIFIED BY '<row>';
-
-SELECT * FROM moex_db.histories;
-LOAD XML LOCAL INFILE "D:\\moex_xml\\history_1.xml"
-INTO TABLE histories
-ROWS IDENTIFIED BY '<row>';
