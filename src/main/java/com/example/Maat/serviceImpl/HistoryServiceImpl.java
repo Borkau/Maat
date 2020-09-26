@@ -3,13 +3,19 @@ package com.example.Maat.serviceImpl;
 
 import com.example.Maat.dto.HistoryDto;
 import com.example.Maat.entity.History;
+import com.example.Maat.entity.Security;
+import com.example.Maat.parser.HistoryParser;
+import com.example.Maat.parser.SecurityParser;
 import com.example.Maat.repository.HistoryRepository;
 import com.example.Maat.service.HistoryConverter;
 import com.example.Maat.service.HistoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +26,8 @@ public class HistoryServiceImpl implements HistoryService {
 
     private final HistoryRepository historyRepository;
     private final HistoryConverter historyConverter;
+    private final HistoryParser historyParser;
+
 
     @Transactional
     @Override
@@ -51,4 +59,11 @@ public class HistoryServiceImpl implements HistoryService {
                 .map(historyConverter::fromHistoryToHistoryDto)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    @Override
+    public List<History> saveAll() throws IOException, SAXException, ParserConfigurationException {
+        return historyRepository.saveAll(historyParser.parseHistory());
+    }
+
 }

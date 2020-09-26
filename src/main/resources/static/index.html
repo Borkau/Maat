@@ -32,6 +32,7 @@
     <label title = "Only cyrillic, numbers and spaces">
     <input id="security_secName" placeholder="Name" required pattern="^[а-яА-ЯёЁ0-9\s]+$">
     </label>
+    
     <button onclick="createSecurity()">Create security</button>
 
 </form>
@@ -232,8 +233,11 @@
 
     function parseSecurities() {
         var httpRequest = new XMLHttpRequest();
+        var httpRequest1 = new XMLHttpRequest()
         httpRequest.open("POST", "http://localhost:8090/controller/security/parseSecurity", true);
+        httpRequest1.open("POST", "http://localhost:8090/controller/history/parseHistory", true);
         httpRequest.send();
+        httpRequest1.send();
     }
 
 </script>

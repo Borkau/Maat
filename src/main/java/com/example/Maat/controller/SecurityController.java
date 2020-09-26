@@ -51,7 +51,7 @@ public class SecurityController {
     }
 
     @RequestMapping("/parseSecurity")
-    public void parseSecurities() throws IOException, SAXException, ParserConfigurationException {
-        securityParser.parseSecurity();
+    public void saveAll() throws IOException, SAXException, ParserConfigurationException {
+        securityService.saveAll();
     }
 }

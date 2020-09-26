@@ -7,7 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -43,4 +46,10 @@ public class HistoryController {
         log.info("Handling find by history request: " + secHisId);
         return historyService.findBySecHisId(secHisId);
     }
+
+    @RequestMapping("/parseHistory")
+    public void saveAll() throws IOException, SAXException, ParserConfigurationException {
+        historyService.saveAll();
+    }
+
 }
