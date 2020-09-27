@@ -56,35 +56,27 @@ public class HistoryParser {
                     history.setTradeDate(element.getAttribute("TRADEDATE"));
                     history.setShortHistoryName(element.getAttribute("SHORTNAME"));
                     history.setSecHisId(element.getAttribute("SECID"));
-                    history.setNumTrades(element.getAttribute("NUMTRADES"));
-                    history.setValueHis(strToDouble(element.getAttribute("HISVALUE")));
-                    history.setHisOpen(strToDouble(element.getAttribute("HISOPEN")));
+                    history.setNumTrades(strToDouble(element.getAttribute("NUMTRADES")));
+                    history.setValueHis(strToDouble(element.getAttribute("VALUE")));
+                    history.setHisOpen(strToDouble(element.getAttribute("OPEN")));
                     history.setLowHis(strToDouble(element.getAttribute("LOW")));
                     history.setHighHis(strToDouble(element.getAttribute("HIGH")));
                     history.setLegalClosePrice(strToDouble(element.getAttribute("LEGALCLOSEPRICE")));
                     history.setWaPrice(strToDouble(element.getAttribute("WAPRICE")));
-                    history.setCloseHis(strToDouble(element.getAttribute("HISCLOSE")));
+                    history.setCloseHis(strToDouble(element.getAttribute("CLOSE")));
                     history.setVolumeHis(strToDouble(element.getAttribute("VOLUME")));
                     history.setMarketPrice2(strToDouble(element.getAttribute("MARKETPRICE2")));
                     history.setMarketPrice3(strToDouble(element.getAttribute("MARKETPRICE3")));
                     history.setAdmittedQuote(strToDouble(element.getAttribute("ADMITTEDQUOTE")));
                     history.setMarketPrice3TradesValue(strToDouble(element.getAttribute("MARKETPRICE3TRADESVALUE")));
                     history.setAdmittedValue(strToDouble(element.getAttribute("ADMITTEDVALUE")));
-                    // add Security to list
+
+                    // add History to list
                     histories.add(history);
                 }
             }
         }
         return histories;
-    }
-
-    // handling methods parseInt and parseLong because string can be null
-    private static int strToInt(String s) {
-        try {
-            return Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            return 0;
-        }
     }
 
     private static double strToDouble(String s) {

@@ -52,7 +52,11 @@ public class SecurityController {
 
     @RequestMapping("/parseSecurity")
     public void saveAll() throws IOException, SAXException, ParserConfigurationException {
-        securityService.deleteAllSec();
         securityService.saveAll();
+    }
+
+    @RequestMapping("/deleteAllSec")
+    public void deleteAllSec() {
+        securityService.deleteAllSec();
     }
 }

@@ -44,7 +44,11 @@
 
 
 <button onclick="loadSecurity()">Load all securities</button>
+
 <button onclick="parseSecurities()">Load XML</button>
+
+<button onclick="deleteAll()">Delete all data</button>
+
 
 
 
@@ -236,6 +240,15 @@
         var httpRequest1 = new XMLHttpRequest()
         httpRequest.open("POST", "http://localhost:8090/controller/security/parseSecurity", true);
         httpRequest1.open("POST", "http://localhost:8090/controller/history/parseHistory", true);
+        httpRequest.send();
+        httpRequest1.send();
+    }
+
+    function deleteAll() {
+        var httpRequest = new XMLHttpRequest();
+        var httpRequest1 = new XMLHttpRequest();
+        httpRequest.open("POST", "http://localhost:8090/controller/security/deleteAllSec", true);
+        httpRequest1.open("POST", "http://localhost:8090/controller/history/deleteAllHis", true);
         httpRequest.send();
         httpRequest1.send();
     }

@@ -1,9 +1,7 @@
 package com.example.Maat.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Builder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,7 +17,7 @@ public class History {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "ID")
+    @Column (name = "id")
     private Integer hisId;
 
     @NotNull
@@ -40,7 +38,7 @@ public class History {
 
     @NotNull
     @Column (name = "NUMTRADES")
-    private String numTrades;
+    private Double numTrades;
 
     @Column (name = "HISVALUE")
     private Double valueHis;

@@ -136,5 +136,8 @@
 <column name="PAGESIZE" type="int64" />
 </columns>
 </metadata>
+<rows>
+<row INDEX="0" TOTAL="483" PAGESIZE="100" />
+</rows>
 </data>
 </document>

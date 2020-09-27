@@ -13,7 +13,7 @@ public class HistoryDto {
     private String tradeDate;
     private String shortHistoryName;
     private String secHisId;
-    private String numTrades;
+    private Double numTrades;
     private Double valueHis;
     private Double hisOpen;
     private Double lowHis;

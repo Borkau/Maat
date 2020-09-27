@@ -56,7 +56,7 @@ public class SecurityParser {
                     security.setSecId(element.getAttribute("secid"));
                     security.setShortName(element.getAttribute("shortname"));
                     security.setRegNumber(element.getAttribute("regnumber"));
-                    security.setName(element.getAttribute("secname"));
+                    security.setName(element.getAttribute("name"));
                     security.setIsIn(element.getAttribute("isin"));
                     security.setIsTraded(strToInt(element.getAttribute("is_traded")));
                     security.setEmitentId(strToInt(element.getAttribute("emitent_id")));
@@ -64,8 +64,8 @@ public class SecurityParser {
                     security.setEmitentInn(strToLong(element.getAttribute("emitent_inn")));
                     security.setEmitentOkpo(strToInt(element.getAttribute("emitent_okpo")));
                     security.setGosReg(element.getAttribute("gosreg"));
-                    security.setSecType(element.getAttribute("sectype"));
-                    security.setGosReg(element.getAttribute("secgroup"));
+                    security.setSecType(element.getAttribute("type"));
+                    security.setSecGroup(element.getAttribute("group"));
                     security.setPrimaryBoardId(element.getAttribute("primary_boardid"));
                     security.setMarketPriceBoardId(element.getAttribute("marketprice_boardid"));
 
