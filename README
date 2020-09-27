@@ -17,13 +17,6 @@ Technologies used:
 Данные для MySQL парсятся непосредственно в приложении.
 
 //////////////////////////////////////////////////////
-
-Edit Hystory XML. Rename fields VALUE, OPEN, CLOSE to HISVALUE, HISOPEN, HISCLOSE
-Edit Secutities XML. Rename fields type, group to sectype and secgroup.
-Because this words reserves for Mysql.
-
-
-//////////////////////////////////////////////////////
 * create MySQL tables
 
 CREATE TABLE `moex_db`.`securities` (
