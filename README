@@ -94,6 +94,6 @@ CREATE TABLE `histories` (
   `ADMITTEDQUOTE` double DEFAULT NULL,
   `MARKETPRICE3TRADESVALUE` double DEFAULT NULL,
   `ADMITTEDVALUE` double DEFAULT NULL,
-  PRIMARY KEY (`id`,`SECID`)
+  PRIMARY KEY (`id`)
 
 //////////////////////////////////////////////////////
