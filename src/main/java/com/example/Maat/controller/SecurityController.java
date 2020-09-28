@@ -2,7 +2,6 @@ package com.example.Maat.controller;
 
 
 import com.example.Maat.dto.SecurityDto;
-import com.example.Maat.parser.SecurityParser;
 import com.example.Maat.service.SecurityService;
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
@@ -22,8 +21,6 @@ import java.util.List;
 public class SecurityController {
 
     private final SecurityService securityService;
-    private final SecurityParser securityParser;
-
 
     @PostMapping("/save")
     public SecurityDto saveSecurity(@RequestBody SecurityDto securityDto) {

@@ -17,10 +17,7 @@ public class SecurityDto {
     public String secId;
     public String shortName;
     public String regNumber;
-
-
     public String name;
-
     public String isIn;
     public Integer isTraded;
     public Integer emitentId;

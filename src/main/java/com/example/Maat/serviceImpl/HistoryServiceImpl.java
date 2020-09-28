@@ -3,9 +3,7 @@ package com.example.Maat.serviceImpl;
 
 import com.example.Maat.dto.HistoryDto;
 import com.example.Maat.entity.History;
-import com.example.Maat.entity.Security;
 import com.example.Maat.parser.HistoryParser;
-import com.example.Maat.parser.SecurityParser;
 import com.example.Maat.repository.HistoryRepository;
 import com.example.Maat.service.HistoryConverter;
 import com.example.Maat.service.HistoryService;

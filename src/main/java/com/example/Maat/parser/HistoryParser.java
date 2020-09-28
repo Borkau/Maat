@@ -79,15 +79,6 @@ public class HistoryParser {
         return histories;
     }
 
-    private static int strToInt(String s) {
-        try {
-            return Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            return 0;
-        }
-    }
-
-
     private static double strToDouble(String s) {
         try {
             return Double.parseDouble(s);
