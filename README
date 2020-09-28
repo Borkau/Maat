@@ -97,3 +97,15 @@ CREATE TABLE `histories` (
   PRIMARY KEY (`id`)
 
 //////////////////////////////////////////////////////
+
+* основные источники, которыми пользовался при разработке:
+https://java-master.com
+https://ru.stackoverflow.com
+https://javadevblog.com
+https://spring.io/
+https://docs.oracle.com/en/java/javase
+https://java-course.ru/begin/xml
+https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference
+https://tproger.ru
+
+
