@@ -1,4 +1,4 @@
-The app is under active development and is NOT working yet.
+This application is under construction. It works, but not very well.
 
 Test.
 Web Maven MVC application with CRUD operations.
@@ -13,54 +13,86 @@ Technologies used:
 - Lombok lib
 
 Тестовое задание.
-Веб-приложение, MVC, построенное на Maven, реализующее стандартные CRUD-операции.
-Данные для MySQL парсятся непосредственно в приложении.
+Относительно работающий билд.
+
+//////////////////////////////////////////////////////
+* Инструкция по запуску.
+0. 
+Предварительно создать в корне диска C:\ папку "maat_temp". Это папка, куда нужно складывать файлы XML. Программа сама их оттуда копирует в свою папку и
+там уже спокойно парсит. Это просто для удобства. Можно сразу кидать в корень проекта.
+0.1 
+Создать MySQL бд "moex_db", в ней две таблицы. Скрипты, написаны ниже.
+1.
+Запуск.
+Вариант 1 - под IDEA;
+Вариант 2 - в папке \Maat\target лежит .jar
+
+//////////////////////////////////////////////////////
+* Описание архитектуры приложения.
+Это Maven mvc(mvcs)-приложение, с простым одностраничным view. 
+Компонент Model представлен entity-классами и pojo-классом DTO.
+В слое сервиса происходит парсинг XML-файлов и конвертация в объекты, преобразования toDTO и обратно. А также там определены
+методы CRUD имплементирующие JPA Repository.
+Контроллеры(REST API) только связывают view с остальными слоями.
+Компонент View представлен одностраничным html с функциями JS и AJAX-запросами.
+Позволяет добавить новую ценную бумагу, найти по имени (только необходимо точное имя),  показать таблицу со всеми ценными бумагами (пункт 4 задания),
+загрузить данные в БД из XML(кнопка "Load data from XML"), очистить все ячейки в БД (кнопка "Delete all data").
+
+//////////////////////////////////////////////////////
+* Не сделано, какие есть проблемы, предполагаемые варианты решений.
+0. В целом, довольно криво, view просто никакая, но это первый мой проект подобного масштаба. Ломбок использовался только для ознакомления :).
+1. Не сделал сортировку и фильтрацию по полям. Мои знания JS просто не позволяют это сделать в разумные сроки.
+2. Функцию редактирования. Тут мне тоже не хватает знаний JS, чтобы полноценно реализовать. Должно работать используя метод save.
+3. При повторном нажатии кнопки "LoadXml" в таблицу histories повторно вставляются и дублируются данные.
+Пробовал разными способами сделать составной ключ, что должно исправить проблему, но мне так и не удалось заставить код корректно работать.
+Как вариант, перед загрузкой файлов очищать БД методом deleteAll, или после нажатия сделать кнопку неактивной, но это не решение.
+4. Парсер написан под предоставленные файлы. Для использовании других xml с аналогичной структурой, но другими именами и в другом количестве, необходимы изменения в класс-парсер.
+5. Огромное количество других недоработок и того, что хотелось бы исправить и улучшить, буду постепенно улучшать.
 
 //////////////////////////////////////////////////////
 * create MySQL tables
 
-CREATE TABLE `moex_db`.`securities` (
-  `id` INT NOT NULL,
-  `secid` VARCHAR(45) NOT NULL,
-  `shortname` VARCHAR(45) NOT NULL,
-  `regnumber` VARCHAR(45) NULL,
-  `secname` VARCHAR(100) NOT NULL,
-  `isin` VARCHAR(45) NULL,
-  `is_traded` INT NULL,
-  `emitent_id` INT NULL,
-  `emitent_title` VARCHAR(100) NULL,
-  `emitent_inn` BIGINT(10) NULL,
-  `emitent_okpo` INT NULL,
-  `gosreg` VARCHAR(45) NULL,
-  `sectype` VARCHAR(45) NULL,
-  `secgroup` VARCHAR(45) NULL,
-  `primary_boardid` VARCHAR(45) NULL,
-  `marketprice_boardid` VARCHAR(45) NULL,
+CREATE TABLE `securities` (
+  `id` int NOT NULL,
+  `secid` varchar(45) NOT NULL,
+  `shortname` varchar(45) NOT NULL,
+  `regnumber` varchar(45) DEFAULT NULL,
+  `secname` varchar(100) NOT NULL,
+  `isin` varchar(45) DEFAULT NULL,
+  `is_traded` int DEFAULT NULL,
+  `emitent_id` int DEFAULT NULL,
+  `emitent_title` varchar(200) DEFAULT NULL,
+  `emitent_inn` bigint DEFAULT NULL,
+  `emitent_okpo` int DEFAULT NULL,
+  `gosreg` varchar(45) DEFAULT NULL,
+  `sectype` varchar(45) DEFAULT NULL,
+  `secgroup` varchar(45) DEFAULT NULL,
+  `primary_boardid` varchar(45) DEFAULT NULL,
+  `marketprice_boardid` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
+  UNIQUE KEY `id_UNIQUE` (`id`)
 
 
-CREATE TABLE `moex_db`.`histories` (
-  `ID` INT NOT NULL AUTO_INCREMENT,
-  `BOARDID` VARCHAR(45) NOT NULL,
-  `TRADEDATE` VARCHAR(45) NOT NULL,
-  `SHORTNAME` VARCHAR(45) NULL,
-  `SECID` VARCHAR(100) NOT NULL,
-  `NUMTRADES` DOUBLE(45) NULL,
-  `HISVALUE` DOUBLE NULL,
-  `HISOPEN` INT NULL,
-  `LOW` DOUBLE(100) NULL,
-  `HIGH` DOUBLE(10) NULL,
-  `LEGALCLOSEPRICE` DOUBLE NULL,
-  `WAPRICE` DOUBLE(45) NULL,
-  `HISCLOSE` DOUBLE(45) NULL,
-  `VOLUME` DOUBLE(45) NULL,
-  `MARKETPRICE2` DOUBLE(45) NULL,
-  `MARKETPRICE3` DOUBLE(45) NULL,
-  `ADMITTEDQUOTE` DOUBLE(45) NULL,
-  `MARKETPRICE3TRADESVALUE` DOUBLE(45) NULL,
-  `ADMITTEDVALUE` DOUBLE(45) NULL,  
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
+CREATE TABLE `histories` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `BOARDID` varchar(45) NOT NULL,
+  `TRADEDATE` varchar(45) NOT NULL,
+  `SHORTNAME` varchar(45) NOT NULL,
+  `SECID` varchar(45) NOT NULL,
+  `NUMTRADES` double NOT NULL,
+  `HISVALUE` double DEFAULT NULL,
+  `HISOPEN` double DEFAULT NULL,
+  `LOW` double DEFAULT NULL,
+  `HIGH` double DEFAULT NULL,
+  `LEGALCLOSEPRICE` double DEFAULT NULL,
+  `WAPRICE` double DEFAULT NULL,
+  `HISCLOSE` double DEFAULT NULL,
+  `VOLUME` double DEFAULT NULL,
+  `MARKETPRICE2` double DEFAULT NULL,
+  `MARKETPRICE3` double DEFAULT NULL,
+  `ADMITTEDQUOTE` double DEFAULT NULL,
+  `MARKETPRICE3TRADESVALUE` double DEFAULT NULL,
+  `ADMITTEDVALUE` double DEFAULT NULL,
+  PRIMARY KEY (`id`,`SECID`)
 
 //////////////////////////////////////////////////////

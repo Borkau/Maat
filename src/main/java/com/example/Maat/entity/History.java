@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
 @Table (name = "histories")
@@ -12,72 +13,71 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 
 
+
 public class History {
 
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "id")
+    @Column(name = "id")
     private Integer hisId;
 
     @NotNull
-    @Column (name = "BOARDID")
+    @Column(name = "BOARDID")
     private String boardId;
 
     @NotNull
-    @Column (name = "TRADEDATE")
+    @Column(name = "TRADEDATE")
     private String tradeDate;
 
     @NotNull
-    @Column (name = "SHORTNAME")
+    @Column(name = "SHORTNAME")
     private String shortHistoryName;
 
     @NotNull
-    @Column (name = "SECID")
+    @Column(name = "SECID")
     private String secHisId;
 
     @NotNull
-    @Column (name = "NUMTRADES")
+    @Column(name = "NUMTRADES")
     private Double numTrades;
 
-    @Column (name = "HISVALUE")
+    @Column(name = "HISVALUE")
     private Double valueHis;
 
-    @Column (name = "HISOPEN")
+    @Column(name = "HISOPEN")
     private Double hisOpen;
 
-    @Column (name = "LOW")
+    @Column(name = "LOW")
     private Double lowHis;
 
-    @Column (name = "HIGH")
+    @Column(name = "HIGH")
     private Double highHis;
 
-    @Column (name = "LEGALCLOSEPRICE")
+    @Column(name = "LEGALCLOSEPRICE")
     private Double legalClosePrice;
 
-    @Column (name = "WAPRICE")
+    @Column(name = "WAPRICE")
     private Double waPrice;
 
-    @Column (name = "HISCLOSE")
+    @Column(name = "HISCLOSE")
     private Double closeHis;
 
-    @Column (name = "VOLUME")
+    @Column(name = "VOLUME")
     private Double volumeHis;
 
-    @Column (name = "MARKETPRICE2")
+    @Column(name = "MARKETPRICE2")
     private Double marketPrice2;
 
-    @Column (name = "MARKETPRICE3")
+    @Column(name = "MARKETPRICE3")
     private Double marketPrice3;
 
-    @Column (name = "ADMITTEDQUOTE")
+    @Column(name = "ADMITTEDQUOTE")
     private Double admittedQuote;
 
-    @Column (name = "MARKETPRICE3TRADESVALUE")
+    @Column(name = "MARKETPRICE3TRADESVALUE")
     private Double marketPrice3TradesValue;
 
-    @Column (name = "ADMITTEDVALUE")
+    @Column(name = "ADMITTEDVALUE")
     private Double admittedValue;
-
-
 }

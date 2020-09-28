@@ -63,7 +63,6 @@ public class HistoryServiceImpl implements HistoryService {
     @Transactional
     @Override
     public List<History> saveAll() throws IOException, SAXException, ParserConfigurationException {
-        historyRepository.flush();
         return historyRepository.saveAll(historyParser.parseHistory());
     }
 
