@@ -52,6 +52,7 @@ public class HistoryParser {
 
                     // create new Security Object
                     history = new History();
+                    history.setHisId(i + y * 100);
                     history.setBoardId(element.getAttribute("BOARDID"));
                     history.setTradeDate(element.getAttribute("TRADEDATE"));
                     history.setShortHistoryName(element.getAttribute("SHORTNAME"));

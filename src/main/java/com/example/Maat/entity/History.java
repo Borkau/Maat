@@ -17,7 +17,6 @@ public class History {
 
     @Id
     @NotNull
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer hisId;
 
